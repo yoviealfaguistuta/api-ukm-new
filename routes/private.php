@@ -15,18 +15,54 @@ use App\Http\Controllers\imageitemgalleriController;
 use App\Http\Controllers\videogalleriController;
 use App\Http\Controllers\videoitemgalleriController;
 use App\Http\Controllers\staticpageController;
-use App\Http\Controllers\UkmController;
+use App\Http\Controllers\Private\UkmController;
 use App\Http\Controllers\menuController;
+use App\Http\Controllers\Private\AnnouncementController;
+use App\Http\Controllers\Private\GalleryImageController;
+use App\Http\Controllers\Private\GalleryVideoController;
 use App\Http\Controllers\Private\NewsCategoryController;
+use App\Models\GalleryImage;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::prefix('private')->group(function () {
-        Route::prefix('ukm')->group(function () {
-            Route::patch('/{id_ukm}', [UkmController::class, 'update']); // Memperbarui UKM
-            Route::post('/{id_ukm}', [UkmController::class, 'create']); // Membuat data UKM baru
-            Route::delete('/{id_ukm}', [UkmController::class, 'delete']); // Menghapus data UKM
+
+        Route::prefix('news-category')->group(function () {
+            Route::get('/', [NewsCategoryController::class, 'list']);
+            Route::post('/', [NewsCategoryController::class, 'create']);
         });
+    
+        Route::prefix('news')->group(function () {
+            Route::get('/', [NewsController::class, 'list']);
+            Route::post('/', [NewsController::class, 'create']);
+        });
+
+        Route::prefix('gallery-image')->group(function () {
+            Route::get('/', [GalleryImageController::class, 'list']);
+            Route::post('/', [GalleryImageController::class, 'create']);
+        });
+
+        Route::prefix('gallery-video')->group(function () {
+            Route::get('/', [GalleryVideoController::class, 'list']);
+            Route::post('/', [GalleryVideoController::class, 'create']);
+        });
+
+        Route::prefix('announcement')->group(function () {
+            Route::get('/', [AnnouncementController::class, 'list']);
+            Route::post('/', [AnnouncementController::class, 'create']);
+        });
+
+        Route::prefix('ukm')->group(function () {
+            Route::get('/', [UkmController::class, 'list']);
+            // Route::post('/', [AnnouncementController::class, 'create']);
+        });
+
+
+        // Route::prefix('ukm')->group(function () {
+        //     Route::patch('/{id_ukm}', [UkmController::class, 'update']); // Memperbarui UKM
+        //     Route::post('/{id_ukm}', [UkmController::class, 'create']); // Membuat data UKM baru
+        //     Route::delete('/{id_ukm}', [UkmController::class, 'delete']); // Menghapus data UKM
+        // });
     
         Route::prefix('artikelkategori')->group(function () {
     
@@ -49,22 +85,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
             Route::delete('/{id_artikel_hit}', [artikelhitController::class, 'delete']); // Menghapus data artikelhit
         });
     
-        Route::prefix('news-category')->group(function () {
-            Route::get('/', [NewsCategoryController::class, 'list']);
-            Route::post('/', [NewsCategoryController::class, 'create']);
-            // Route::patch('/{id_kategori}', [newskategoriController::class, 'update']); // Memperbarui newskategori
-            // Route::post('/{id_kategori}', [newskategoriController::class, 'create']); // Membuat data newskategori baru
-            // Route::delete('/{id_kategori}', [newskategoriController::class, 'delete']); // Menghapus data newskategori
-        });
-    
-        Route::prefix('news')->group(function () {
-            Route::get('/', [NewsController::class, 'list']); // Daftar news
-            Route::post('/', [NewsController::class, 'create']); // Daftar news
-            Route::get('/{id_news}', [newsController::class, 'detail']); // Detail Data news
-            Route::patch('/{id_news}', [newsController::class, 'update']); // Memperbarui news
-            Route::post('/{id_news}', [newsController::class, 'create']); // Membuat data news baru
-            Route::delete('/{id_news}', [newsController::class, 'delete']); // Menghapus data news
-        });
+        
     
         Route::prefix('newshit')->group(function () {
     

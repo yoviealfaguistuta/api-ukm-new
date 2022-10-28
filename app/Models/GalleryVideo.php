@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class image_galleri extends Model
+class GalleryVideo extends Model
 {
-    protected $table = 'image_galleri';
+    protected $table = 'gallery_video';
 	
 	protected $fillable = [
-       'id_ukm',
-        'nama',
-        'description'
+        'id_ukm',
+        'youtube_id',
+        'judul',
+        'deskripsi'
     ];
 
 	protected $primaryKey = 'id';

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImageGalleriTable extends Migration
+class CreateAnnouncementTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateImageGalleriTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_galleri', function (Blueprint $table) {
+        Schema::create('announcement', function (Blueprint $table) {
             $table->id();
-                
             $table->unsignedBigInteger('id_ukm');
-            $table->string('nama');
-            $table->string('description');
+            $table->string('title');
+            $table->text('content');
+            $table->text('image');
+            $table->bigInteger('total_hit');
             $table->timestamps();
 
-    
-            $table->foreign('id_ukm')->references('id')->on('ukm')->onDelete('cascade')->onUpdate('cascade');
-       
-     });
+            $table->foreign('id_ukm')->references('id')->on('ukm');
+        });
     }
 
     /**
@@ -34,6 +33,6 @@ class CreateImageGalleriTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_galleri');
+        Schema::dropIfExists('news_kategori');
     }
 }

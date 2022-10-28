@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVideoGalleriTable extends Migration
+class CreateGalleryVideoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateVideoGalleriTable extends Migration
      */
     public function up()
     {
-        Schema::create('video_galleri', function (Blueprint $table) {
+        Schema::create('gallery_video', function (Blueprint $table) {
             $table->id();
-                
             $table->unsignedBigInteger('id_ukm');
-            $table->string('nama');
-            $table->string('description');
+            $table->text('youtube_id');
+            $table->string('judul');
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
-
     
             $table->foreign('id_ukm')->references('id')->on('ukm')->onDelete('cascade')->onUpdate('cascade');
        
-        });
+     });
     }
 
     /**
@@ -34,6 +33,6 @@ class CreateVideoGalleriTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('video_galleri');
+        Schema::dropIfExists('image_galleri');
     }
 }
