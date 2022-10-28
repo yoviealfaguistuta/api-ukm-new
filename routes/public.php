@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\artikelController;
 use App\Http\Controllers\artikelhitController;
 use App\Http\Controllers\artikelkategoriController;
-use App\Http\Controllers\newsController;
+// use App\Http\Controllers\newsController;
 use App\Http\Controllers\newshitController;
 use App\Http\Controllers\newskategoriController;
 use App\Http\Controllers\dokumenController;
@@ -16,6 +16,10 @@ use App\Http\Controllers\videoitemgalleriController;
 use App\Http\Controllers\staticpageController;
 use App\Http\Controllers\UkmController;
 use App\Http\Controllers\menuController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\GalleryImageController;
+use App\Http\Controllers\GalleryVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +33,33 @@ use App\Http\Controllers\menuController;
 */
 
 Route::prefix('ukm')->group(function () {
-    Route::get('/', [UkmController::class, 'list'])->name('List'); // Daftar UKM
-    Route::get('/{id_ukm}', [UkmController::class, 'detail']); // Detail Data UKM
+    Route::get('/', [UkmController::class, 'list']);
+    // Route::post('/', [AnnouncementController::class, 'create']);
 });
+
+Route::prefix('news')->group(function () {
+    Route::get('/highlight', [NewsController::class, 'highlight']); // Daftar news
+    Route::get('/popular', [NewsController::class, 'popular']); // Daftar news
+    Route::get('/main-home-news', [NewsController::class, 'main_home_news']);
+});
+
+Route::prefix('announcement')->group(function () {
+    Route::get('/highlight', [AnnouncementController::class, 'highlight']); // Daftar news
+});
+
+Route::prefix('gallery-image')->group(function () {
+    Route::get('/highlight', [GalleryImageController::class, 'highlight']);
+    Route::get('/main-gallery-image', [GalleryImageController::class, 'main_home_gallery_image']);
+});
+
+Route::prefix('gallery-video')->group(function () {
+    Route::get('/highlight', [GalleryVideoController::class, 'highlight']);
+});
+
+// Route::prefix('ukm')->group(function () {
+//     Route::get('/', [UkmController::class, 'list'])->name('List'); // Daftar UKM
+//     Route::get('/{id_ukm}', [UkmController::class, 'detail']); // Detail Data UKM
+// });
 
 Route::prefix('artikelkategori')->group(function () {
     Route::get('/', [artikelkategoriController::class, 'list']); // Daftar artikelkategori
@@ -54,10 +82,7 @@ Route::prefix('newskategori')->group(function () {
    
 });
 
-Route::prefix('news')->group(function () {
-    Route::get('/', [newsController::class, 'list']); // Daftar news
-    Route::get('/{id_news}', [newsController::class, 'detail']); // Detail Data news
-});
+
 
 Route::prefix('newshit')->group(function () {
     Route::get('/', [newshitController::class, 'list']); // Daftar newshit

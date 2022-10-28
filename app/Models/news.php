@@ -21,5 +21,10 @@ class news extends Model
 
 	protected $primaryKey = 'id';
 	
+    protected $casts = [
+        // 'created_at'  => 'date:Y-m-d',
+        'created_at' => 'datetime:Y-m-d H:00',
+    ];
+
 	protected $guarded = [];
 }

@@ -16,7 +16,9 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_ukm');
+            $table->enum('position', ['ketua', 'wakil', 'anggota'])->default('anggota');
             $table->string('name');
+            $table->text('foto_profile')->default('/assets/images/data/default-user.png');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();

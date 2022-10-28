@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::prefix('news')->group(function () {
             Route::get('/', [NewsController::class, 'list']);
             Route::post('/', [NewsController::class, 'create']);
+            Route::get('/{id}', [NewsController::class, 'detail']);
+            Route::post('/{id}', [NewsController::class, 'update']);
         });
 
         Route::prefix('gallery-image')->group(function () {
@@ -53,7 +55,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         });
 
         Route::prefix('ukm')->group(function () {
-            Route::get('/', [UkmController::class, 'list']);
+            Route::get('/', [UkmController::class, 'detail']);
+            Route::post('/', [UkmController::class, 'update']);
             // Route::post('/', [AnnouncementController::class, 'create']);
         });
 
