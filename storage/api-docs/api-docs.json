@@ -14,11 +14,515 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:800/api",
+            "url": "http://127.0.0.1:8000/api",
             "description": "Demo API Server"
         }
     ],
     "paths": {
+        "/announcement/highlight": {
+            "get": {
+                "tags": [
+                    "Announcement"
+                ],
+                "summary": "Menampilkan 1 pengumuman terbaru",
+                "operationId": "4547e7dbad450d11ffd432c2f68d33a9",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gallery-image/highlight": {
+            "get": {
+                "tags": [
+                    "Gallery Image"
+                ],
+                "summary": "Menampilkan 1 galeri foto terbaru",
+                "operationId": "5623c6bd3f08f5cbca5bd8a4c353ee71",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gallery-image/main-gallery-image": {
+            "get": {
+                "tags": [
+                    "Gallery Image"
+                ],
+                "summary": "Menampilkan daftar seluruh galeri foto",
+                "operationId": "4f203dd57cba1b121db65659ffc35fdd",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gallery-video/highlight": {
+            "get": {
+                "tags": [
+                    "Gallery Video"
+                ],
+                "summary": "Menampilkan 1 galeri video terbaru",
+                "operationId": "295d2e0af4ec2dde70c01c06a722ec77",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/news/highlight": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Menampikan 1 berita terbaru",
+                "operationId": "ec6cb23f53c2dcf30aab241a299f705d",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/news/popular": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Menampilkan berita terpopuler berdadarkan jumlah dibaca",
+                "operationId": "ed1a9707c2762c32ce2e6e31271b047c",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/news/main-home-news": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Menampilkan seluruh daftar berita",
+                "operationId": "44a0eff2c17dc0cb0598f23773c9ce7d",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ukm": {
+            "get": {
+                "tags": [
+                    "UKM"
+                ],
+                "summary": "Menampilkan seluruh daftar UKM",
+                "operationId": "8bb4e9408953d5042151b9dbd52fddd4",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/artikel": {
             "get": {
                 "tags": [
@@ -1043,134 +1547,6 @@
                 }
             }
         },
-        "/news": {
-            "get": {
-                "tags": [
-                    "News"
-                ],
-                "summary": "Get List News",
-                "operationId": "d25ae3bf90117d90d68ca0404fcfdeaf",
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "rows": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "_id": {
-                                                        "type": "number",
-                                                        "example": "1"
-                                                    },
-                                                    "nama": {
-                                                        "type": "string",
-                                                        "example": "example nama"
-                                                    },
-                                                    "jenis": {
-                                                        "type": "enum",
-                                                        "example": "example jenis"
-                                                    },
-                                                    "singkatan_ukm": {
-                                                        "type": "string",
-                                                        "example": "example singkatan_ukm"
-                                                    },
-                                                    "foto_ukm": {
-                                                        "type": "text",
-                                                        "example": "example foto_ukm"
-                                                    },
-                                                    "keterangan": {
-                                                        "type": "string",
-                                                        "example": "example keterangan"
-                                                    },
-                                                    "updated_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    },
-                                                    "created_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/news/{id}": {
-            "get": {
-                "tags": [
-                    "News"
-                ],
-                "summary": "Get Detail News",
-                "operationId": "5b0d957fecf9c4341842c53a0e2ee9f3",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "_id": {
-                                            "type": "number",
-                                            "example": "1"
-                                        },
-                                        "nama": {
-                                            "type": "string",
-                                            "example": "example nama"
-                                        },
-                                        "jenis": {
-                                            "type": "enum",
-                                            "example": "example jenis"
-                                        },
-                                        "singkatan_ukm": {
-                                            "type": "string",
-                                            "example": "example singkatan_ukm"
-                                        },
-                                        "foto_ukm": {
-                                            "type": "text",
-                                            "example": "example foto_ukm"
-                                        },
-                                        "keterangan": {
-                                            "type": "string",
-                                            "example": "example keterangan"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2021-12-11T09:25:53.000000Z"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2021-12-11T09:25:53.000000Z"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/newshit": {
             "get": {
                 "tags": [
@@ -1497,134 +1873,6 @@
                 ],
                 "summary": "Get Detail Static Page",
                 "operationId": "b70af180df40858cbcea02d2fa97d5ab",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "_id": {
-                                            "type": "number",
-                                            "example": "1"
-                                        },
-                                        "nama": {
-                                            "type": "string",
-                                            "example": "example nama"
-                                        },
-                                        "jenis": {
-                                            "type": "enum",
-                                            "example": "example jenis"
-                                        },
-                                        "singkatan_ukm": {
-                                            "type": "string",
-                                            "example": "example singkatan_ukm"
-                                        },
-                                        "foto_ukm": {
-                                            "type": "text",
-                                            "example": "example foto_ukm"
-                                        },
-                                        "keterangan": {
-                                            "type": "string",
-                                            "example": "example keterangan"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2021-12-11T09:25:53.000000Z"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2021-12-11T09:25:53.000000Z"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/ukm": {
-            "get": {
-                "tags": [
-                    "UKM"
-                ],
-                "summary": "Get List UKM",
-                "operationId": "8bb4e9408953d5042151b9dbd52fddd4",
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "rows": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "_id": {
-                                                        "type": "number",
-                                                        "example": "1"
-                                                    },
-                                                    "nama": {
-                                                        "type": "string",
-                                                        "example": "example nama"
-                                                    },
-                                                    "jenis": {
-                                                        "type": "enum",
-                                                        "example": "example jenis"
-                                                    },
-                                                    "singkatan_ukm": {
-                                                        "type": "string",
-                                                        "example": "example singkatan_ukm"
-                                                    },
-                                                    "foto_ukm": {
-                                                        "type": "text",
-                                                        "example": "example foto_ukm"
-                                                    },
-                                                    "keterangan": {
-                                                        "type": "string",
-                                                        "example": "example keterangan"
-                                                    },
-                                                    "updated_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    },
-                                                    "created_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/ukm/{id}": {
-            "get": {
-                "tags": [
-                    "UKM"
-                ],
-                "summary": "Get Detail UKM",
-                "operationId": "675ba201664d21766f00b9b9c7a00299",
                 "parameters": [
                     {
                         "name": "id",

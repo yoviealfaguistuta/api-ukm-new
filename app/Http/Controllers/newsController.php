@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class NewsController extends Controller
 {
     /**
-     * Get Highlight News
+     * Menampikan 1 berita terbaru
      * @OA\Get (
      *     path="/news/highlight",
      *     tags={"News"},
@@ -92,6 +92,66 @@ class NewsController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * Menampilkan berita terpopuler berdadarkan jumlah dibaca
+     * @OA\Get (
+     *     path="/news/popular",
+     *     tags={"News"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 type="array",
+     *                 property="rows",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="_id",
+     *                         type="number",
+     *                         example="1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="nama",
+     *                         type="string",
+     *                         example="example nama"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="jenis",
+     *                         type="enum",
+     *                         example="example jenis"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="singkatan_ukm",
+     *                         type="string",
+     *                         example="example singkatan_ukm"
+     *                     ),
+      *                      @OA\Property(
+     *                         property="foto_ukm",
+     *                         type="text",
+     *                         example="example foto_ukm"
+     *                     ),          
+     *                      @OA\Property(
+     *                         property="keterangan",
+     *                         type="string",
+     *                         example="example keterangan"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         example="2021-12-11T09:25:53.000000Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         example="2021-12-11T09:25:53.000000Z"
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function popular(Request $request)
     {
         if (!UKM::where('id', $request->id_ukm)->exists()) {
@@ -115,6 +175,66 @@ class NewsController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * Menampilkan seluruh daftar berita 
+     * @OA\Get (
+     *     path="/news/main-home-news",
+     *     tags={"News"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 type="array",
+     *                 property="rows",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="_id",
+     *                         type="number",
+     *                         example="1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="nama",
+     *                         type="string",
+     *                         example="example nama"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="jenis",
+     *                         type="enum",
+     *                         example="example jenis"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="singkatan_ukm",
+     *                         type="string",
+     *                         example="example singkatan_ukm"
+     *                     ),
+      *                      @OA\Property(
+     *                         property="foto_ukm",
+     *                         type="text",
+     *                         example="example foto_ukm"
+     *                     ),          
+     *                      @OA\Property(
+     *                         property="keterangan",
+     *                         type="string",
+     *                         example="example keterangan"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         example="2021-12-11T09:25:53.000000Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         example="2021-12-11T09:25:53.000000Z"
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function main_home_news(Request $request)
     {
         if (!UKM::where('id', $request->id_ukm)->exists()) {
