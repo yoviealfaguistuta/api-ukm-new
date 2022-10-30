@@ -14,6 +14,16 @@ class AnnouncementController extends Controller
      * @OA\Get (
      *     path="/announcement/highlight",
      *     tags={"Announcement"},
+     *      @OA\Parameter(
+     *          parameter="id_ukm",
+     *          name="id_ukm",
+     *          description="ID UKM",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="query",
+     *          required=true
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",

@@ -14,6 +14,16 @@ class NewsController extends Controller
      * @OA\Get (
      *     path="/news/highlight",
      *     tags={"News"},
+     *      @OA\Parameter(
+     *          parameter="id_ukm",
+     *          name="id_ukm",
+     *          description="ID UKM",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="query",
+     *          required=true
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",
@@ -97,6 +107,16 @@ class NewsController extends Controller
      * @OA\Get (
      *     path="/news/popular",
      *     tags={"News"},
+     *      @OA\Parameter(
+     *          parameter="id_ukm",
+     *          name="id_ukm",
+     *          description="ID UKM",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="query",
+     *          required=true
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",
@@ -180,6 +200,16 @@ class NewsController extends Controller
      * @OA\Get (
      *     path="/news/main-home-news",
      *     tags={"News"},
+     *      @OA\Parameter(
+     *          parameter="id_ukm",
+     *          name="id_ukm",
+     *          description="ID UKM",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="query",
+     *          required=true
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",

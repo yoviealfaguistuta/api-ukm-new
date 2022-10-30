@@ -15,6 +15,16 @@ class GalleryImageController extends Controller
      * @OA\Get (
      *     path="/gallery-image/highlight",
      *     tags={"Gallery Image"},
+     *      @OA\Parameter(
+     *          parameter="id_ukm",
+     *          name="id_ukm",
+     *          description="ID UKM",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="query",
+     *          required=true
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",
@@ -87,6 +97,16 @@ class GalleryImageController extends Controller
      * @OA\Get (
      *     path="/gallery-image/main-gallery-image",
      *     tags={"Gallery Image"},
+     *      @OA\Parameter(
+     *          parameter="id_ukm",
+     *          name="id_ukm",
+     *          description="ID UKM",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="query",
+     *          required=true
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",

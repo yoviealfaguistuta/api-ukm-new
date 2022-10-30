@@ -15,6 +15,16 @@ class GalleryVideoController extends Controller
      * @OA\Get (
      *     path="/gallery-video/highlight",
      *     tags={"Gallery Video"},
+     *      @OA\Parameter(
+     *          parameter="id_ukm",
+     *          name="id_ukm",
+     *          description="ID UKM",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="query",
+     *          required=true
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",
