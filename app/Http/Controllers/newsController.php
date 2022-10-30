@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Validator;
 class NewsController extends Controller
 {
     /**
-     * Get List News
+     * Get Highlight News
      * @OA\Get (
-     *     path="/news",
+     *     path="/news/highlight",
      *     tags={"News"},
      *     @OA\Response(
      *         response=200,

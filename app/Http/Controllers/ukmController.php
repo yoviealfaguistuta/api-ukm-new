@@ -11,7 +11,7 @@ class UkmController extends Controller
             'ukm.id',
             'ukm.nama',
             'ukm.foto_ukm',
-            'ukm.keterangan',
+            'ukm.tentang_kami',
         )
         ->paginate(6);
 
