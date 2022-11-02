@@ -13,7 +13,7 @@ class NewsController extends Controller
 {
     public function list()
     {
-        $data['news'] = news::select(
+        $data = news::select(
             'news.id',
             'news.id_ukm',
             'news.title',
@@ -27,11 +27,7 @@ class NewsController extends Controller
             ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
             ->paginate(5);
 
-        return response()->json([
-            'data' => $data,
-            '__message' => 'Daftar berita berhasil diambil',
-            '__func' => 'news list',
-        ], 200);
+            return response()->json($data, 200);
     }
 
     public function create(Request $request)

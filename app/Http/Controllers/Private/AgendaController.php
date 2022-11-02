@@ -20,6 +20,7 @@ class AgendaController extends Controller
             'agenda.lokasi',
             'agenda.image',
             'agenda.tanggal',
+            'agenda.waktu',
         )
         ->where('agenda.id_ukm', Auth::user()->id_ukm)
         ->paginate(5);

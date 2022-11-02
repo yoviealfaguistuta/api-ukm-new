@@ -16,7 +16,7 @@ class UkmController extends Controller
     {
         $data = UKM::where('ukm.id', Auth::user()->id_ukm)->first();
 
-        $data['anggota'] = User::select('name', 'email', 'foto_profile', 'position')->where('id_ukm', Auth::user()->id_ukm)->get();
+        $data['anggota'] = User::select('id', 'name', 'email', 'foto_profile', 'position')->where('id_ukm', Auth::user()->id_ukm)->get();
 
         return response()->json($data, 200);
     }

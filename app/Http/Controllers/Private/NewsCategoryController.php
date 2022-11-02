@@ -30,12 +30,8 @@ class NewsCategoryController extends Controller
 {
     public function list()
     {
-        $data['category'] = news_kategori::where('id_ukm', Auth::user()->id_ukm)->get();
-        return response()->json([
-            'data' => $data,
-            '__message' => 'Daftar Artikel kategori berhasil diambil',
-            '__func' => 'Artikel kategori List',
-        ], 200);
+        $data = news_kategori::where('id_ukm', Auth::user()->id_ukm)->paginate(5);
+        return response()->json($data, 200);
     }
 
     public function detail($news_category_id)

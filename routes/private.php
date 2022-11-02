@@ -19,15 +19,21 @@ use App\Http\Controllers\Private\UkmController;
 use App\Http\Controllers\menuController;
 use App\Http\Controllers\Private\AgendaController;
 use App\Http\Controllers\Private\AnnouncementController;
+use App\Http\Controllers\Private\DashboardController;
 use App\Http\Controllers\Private\GalleryImageController;
 use App\Http\Controllers\Private\GalleryVideoController;
 use App\Http\Controllers\Private\NewsCategoryController;
+use App\Http\Controllers\Private\UsersController;
 use App\Models\GalleryImage;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::prefix('private')->group(function () {
 
+        Route::prefix('dashboard')->group(function () {
+            Route::get('/', [DashboardController::class, 'dashboard']);
+        });
+        
         Route::prefix('news-category')->group(function () {
             Route::get('/', [NewsCategoryController::class, 'list']);
             Route::get('/{news_category_id}', [NewsCategoryController::class, 'detail']);
@@ -79,6 +85,16 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::prefix('ukm')->group(function () {
             Route::get('/', [UkmController::class, 'detail']);
             Route::post('/', [UkmController::class, 'update']);
+            // Route::post('/', [AnnouncementController::class, 'create']);
+        });
+
+        
+
+        Route::prefix('users')->group(function () {
+            Route::get('/profile', [UsersController::class, 'profile']);
+            Route::post('/profile', [UsersController::class, 'update']);
+            Route::post('/tambah-anggota', [UsersController::class, 'create']);
+            Route::delete('/delete-anggota/{id_users}', [UsersController::class, 'delete_anggota']);
             // Route::post('/', [AnnouncementController::class, 'create']);
         });
 
