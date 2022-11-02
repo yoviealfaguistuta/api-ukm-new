@@ -17,6 +17,8 @@ class GalleryImage extends Model
     ];
 
     protected $primaryKey = 'id';
-
+    protected $casts = [
+        'created_at' => 'datetime:d M Y',
+    ];
     protected $guarded = [];
 }

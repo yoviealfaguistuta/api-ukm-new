@@ -607,6 +607,81 @@
                 }
             }
         },
+        "/ukm/detail": {
+            "get": {
+                "tags": [
+                    "UKM"
+                ],
+                "summary": "Menampilkan detail UKM",
+                "operationId": "4c1065de8e5c95fd839185a002754559",
+                "parameters": [
+                    {
+                        "parameter": "id_ukm",
+                        "name": "id_ukm",
+                        "in": "query",
+                        "description": "ID UKM",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "example nama"
+                                                    },
+                                                    "jenis": {
+                                                        "type": "enum",
+                                                        "example": "example jenis"
+                                                    },
+                                                    "singkatan_ukm": {
+                                                        "type": "string",
+                                                        "example": "example singkatan_ukm"
+                                                    },
+                                                    "foto_ukm": {
+                                                        "type": "text",
+                                                        "example": "example foto_ukm"
+                                                    },
+                                                    "keterangan": {
+                                                        "type": "string",
+                                                        "example": "example keterangan"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-12-11T09:25:53.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/artikel": {
             "get": {
                 "tags": [

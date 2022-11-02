@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\GalleryImage;
 use App\Models\news;
+use App\Models\UKM;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -82,14 +83,21 @@ class GalleryImageController extends Controller
      */
     public function highlight(Request $request)
     {
-        $data = GalleryImage::select(
-            'gallery_image.id',
-            'gallery_image.foto',
-        )
-        ->where('gallery_image.id_ukm', $request->id_ukm)
-        ->limit(2)->get();
-
-        return response()->json($data, 200);
+        if (!UKM::where('id', $request->id_ukm)->exists()) {
+            return response()->json("UKM tidak ditemukan", 500);
+        }
+        
+        if (GalleryImage::where('id_ukm', $request->id_ukm)->exists()) {
+            $data = GalleryImage::select(
+                'gallery_image.id',
+                'gallery_image.foto',
+            )
+            ->where('gallery_image.id_ukm', $request->id_ukm)
+            ->limit(2)->get();
+    
+            return response()->json($data, 200);
+        }
+        return response()->json(null, 500);
     }
 
     /**
@@ -164,6 +172,10 @@ class GalleryImageController extends Controller
      */
     public function main_home_gallery_image(Request $request)
     {
+        if (!UKM::where('id', $request->id_ukm)->exists()) {
+            return response()->json("UKM tidak ditemukan", 500);
+        }
+        
         $data = GalleryImage::select(
             'gallery_image.id',
             'gallery_image.foto',
@@ -171,7 +183,7 @@ class GalleryImageController extends Controller
             'gallery_image.deskripsi',
             'gallery_image.created_at',
         )
-        ->where('gallery_image.id_ukm', $request->id_ukm)
+        ->where([['gallery_image.id_ukm', $request->id_ukm], ['gallery_image.judul', 'LIKE', '%' . $request->judul . '%']])
         ->paginate(4);
 
         return response()->json($data, 200);

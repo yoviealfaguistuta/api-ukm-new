@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AgendaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\artikelController;
@@ -34,17 +36,25 @@ use App\Http\Controllers\GalleryVideoController;
 
 Route::prefix('ukm')->group(function () {
     Route::get('/', [UkmController::class, 'list']);
-    // Route::post('/', [AnnouncementController::class, 'create']);
+    Route::get('/detail', [UkmController::class, 'detail']);
 });
 
 Route::prefix('news')->group(function () {
-    Route::get('/highlight', [NewsController::class, 'highlight']); // Daftar news
-    Route::get('/popular', [NewsController::class, 'popular']); // Daftar news
+    Route::get('/highlight', [NewsController::class, 'highlight']);
+    Route::get('/popular', [NewsController::class, 'popular']);
+    Route::get('/related', [NewsController::class, 'related']);
     Route::get('/main-home-news', [NewsController::class, 'main_home_news']);
+    Route::get('/detail/{news_id}', [NewsController::class, 'detail']);
 });
 
 Route::prefix('announcement')->group(function () {
-    Route::get('/highlight', [AnnouncementController::class, 'highlight']); // Daftar news
+    Route::get('/highlight', [AnnouncementController::class, 'highlight']);
+    Route::get('/detail/{announcement_id}', [AnnouncementController::class, 'detail']);
+});
+
+Route::prefix('agenda')->group(function () {
+    Route::get('/highlight', [AgendaController::class, 'highlight']);
+    Route::get('/detail/{agenda_id}', [AgendaController::class, 'detail']);
 });
 
 Route::prefix('gallery-image')->group(function () {
@@ -54,6 +64,7 @@ Route::prefix('gallery-image')->group(function () {
 
 Route::prefix('gallery-video')->group(function () {
     Route::get('/highlight', [GalleryVideoController::class, 'highlight']);
+    Route::get('/main-gallery-video', [GalleryVideoController::class, 'main_home_gallery_video']);
 });
 
 // Route::prefix('ukm')->group(function () {

@@ -18,6 +18,4 @@ class UKM extends Model
     ];
 
 	protected $primaryKey = 'id';
-	
-	protected $guarded = [];
 }

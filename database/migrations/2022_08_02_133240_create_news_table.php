@@ -18,8 +18,8 @@ class CreateNewsTable extends Migration
             // $table->unsignedBigInteger('id_users');
             $table->unsignedBigInteger('id_ukm');
             $table->unsignedBigInteger('id_news_kategori');
-            $table->string('title', 100);
-            $table->string('intro', 100);
+            $table->text('title', 100);
+            $table->text('intro', 100);
             $table->text('content');
             $table->text('foto_news');
             $table->bigInteger('total_hit');

@@ -15,22 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ukm')->insert([
-            'id' => 1,
-            'nama' => "Bidang Seni",
-            'jenis' => 'ukm',
-            'singkatan_ukm' => 'UKMBS',
-            'foto_ukm' => "/assets/images/data/default-ukm.png",
-        ]);
-
-        DB::table('users')->insert([
-            'id' => 1,
-            'id_ukm' => 1,
-            'name' => 'Finka Ramadhani',
-            'position' => 'ketua',
-            'foto_profile' => '/assets/images/data/default-user.png',
-            'email' => 'finka@gmail.com',
-            'password' => Hash::make('12345678'),
+        $this->call([
+            UkmSeeder::class,
+            UsersSeeder::class,
+            NewsCategorySeeder::class,
+            NewsSeeder::class,
+            AgendaSeeder::class,
+            PengumumanSeeder::class,
+            GaleriFotoSeeder::class,
+            GaleriVideoSeeder::class,
         ]);
     }
 }

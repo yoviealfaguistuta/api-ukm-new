@@ -18,6 +18,8 @@ class Announcement extends Model
     ];
 
     protected $primaryKey = 'id';
-
+    protected $casts = [
+        'created_at' => 'datetime:d M Y - H:00',
+    ];
     protected $guarded = [];
 }

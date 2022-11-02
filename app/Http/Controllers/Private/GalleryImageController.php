@@ -59,186 +59,84 @@ class GalleryImageController extends Controller
         return response()->json(false, 500);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | UPDATE
-    |--------------------------------------------------------------------------
-    */
-    public function update(Request $request, $id_news)
+    public function update(Request $request, $gallery_image_id)
     {
-        // Validiasi data yang diberikan oleh frontend
         $validator = Validator::make($request->all(), [
-            // 'id_users' => ['required'],
-            'id_ukm' => ['required'],
-            'id_news_kategori' => ['required',],
-            'title' => ['string'],
-            'intro' => ['string'],
-            'content' => ['string'],
-            'foto_news' => ['mimes:jpg,png,jpeg'],
-            'total_hit' => ['integer'],
+            'judul' => ['string'],
+            'deskripsi' => ['string'],
+            'foto' => ['mimes:jpg,png,jpeg'],
         ]);
 
-        // Jika data yang di validasi tidak sesuai maka berikan response error 422
         if ($validator->fails()) {
-            return response()->json([
-                'data' => $validator->errors(),
-                '__message' => 'News tidak berhasil diperbarui, data yang diberikan tidak valid',
-                '__func' => 'News update',
-            ], 422);
+            return response()->json($validator->errors(), 422);
         }
 
-        // Cek jika ID News yang diberikan merupakan Integer
-        if (!is_numeric($id_news)) {
-            return response()->json([
-                'data' => 'ID News: ' . $id_news,
-                '__message' => 'News tidak berhasil diperbarui, ID artikel harus berupa Integer',
-                '__func' => 'News update',
-            ], 422);
+        if (!is_numeric($gallery_image_id)) {
+            return response()->json("Id galeri foto harus bilangan bulat", 422);
         }
 
-        // Cek jika ID News yang diberikan apakah tersedia di tabel
-        if (news::where('id', $id_news)->exists()) {
-
-            // Cek jika variabel "$request->foto_News" merupakan sebuah file
-            if ($request->hasFile('foto_news')) {
-
-                // Upload file gambar kedalam folder public dan kembalikan nama file 
-                $nama_file = $this->uploadFile($request->foto_news);
-
-                // Eksekusi pembaruan data News
-                $query = news::where('id', $id_news)->update([
-                    'id_ukm' =>  $request->id_ukm,
-                    'id_news_kategori' =>  $request->id_news_kategori,
-                    'title' =>  $request->title,
-                    'intro' =>  $request->intro,
-                    'content' =>  $request->content,
-                    'foto_news' => $nama_file,
-                    'total_hit' =>  $request->total_hit
+        if (GalleryImage::where('id', $gallery_image_id)->exists()) {
+            if ($request->hasFile('foto')) {
+                $nama_file = $this->uploadFile($request->foto);
+                $data = GalleryImage::where('id', $gallery_image_id)->update([
+                    'judul' =>  $request->judul,
+                    'deskripsi' =>  $request->deskripsi,
+                    'foto' => $nama_file,
                 ]);
             } else {
-
-                // Eksekusi pembaruan data News tanpa "foto News"
-                $query = news::where('id', $id_news)->update([
-                    'id_ukm' =>  $request->id_ukm,
-                    'id_news_kategori' =>  $request->id_news_kategori,
-                    'title' =>  $request->title,
-                    'intro' =>  $request->intro,
-                    'content' =>  $request->content,
-                    'total_hit' =>  $request->total_hit
+                $data = GalleryImage::where('id', $gallery_image_id)->update([
+                    'judul' =>  $request->judul,
+                    'deskripsi' =>  $request->deskripsi,
                 ]);
             }
 
-            // Jika eksekusi query berhasil maka berikan response success
-            if ($query) {
-                return response()->json([
-                    'data' => $query,
-                    '__message' => 'News berhasil diperbarui',
-                    '__func' => 'News update',
-                ], 200);
+            if ($data) {
+                return response()->json($data, 200);
             }
-
-            // Jika gagal seperti masalah koneksi atau apapun maka berikan response error
-            return response()->json([
-                'data' => $query,
-                '__message' => 'News tidak berhasil diperbarui, coba kembali beberapa saat',
-                '__func' => 'News update',
-            ], 500);
+    
+            return response()->json($data, 500);
         }
 
-        // Jika ID tidak tersedia maka tampilkan response error
-        return response()->json([
-            'data' => 'ID News: ' . $id_news,
-            '__message' => 'News tidak berhasil diperbarui, ID News tidak ditemukan',
-            '__func' => 'News update',
-        ], 500);
+        return response()->json("Galeri foto tidak ditemukan", 500);
     }
 
-    public function detail($id_news)
+    public function detail($gallery_image_id)
     {
-        // Cek jika ID News yang diberikan merupakan Integer
-        if (!is_numeric($id_news)) {
-            return response()->json([
-                'data' => 'ID News: ' . $id_news,
-                '__message' => 'News tidak berhasil diambil, ID News harus berupa Integer',
-                '__func' => 'News detail',
-            ], 422);
+        if (!is_numeric($gallery_image_id)) {
+            return response()->json("Id galeri foto harus bilangan bulat", 422);
         }
 
-        // Cek jika ID News yang diberikan apakah tersedia di tabel
-        if (news::where('id', $id_news)->exists()) {
+        if (GalleryImage::where('id', $gallery_image_id)->exists()) {
+            $data = GalleryImage::where('id', $gallery_image_id)->first();
 
-            // Eksekusi pembaruan data News
-            $query = news::where('id', $id_news)->first();
-
-            // Jika eksekusi query berhasil maka berikan response success
-            if ($query) {
-                return response()->json([
-                    'data' => $query,
-                    '__message' => 'Detail News berhasil diambil',
-                    '__func' => 'News detail',
-                ], 200);
+            if ($data) {
+                return response()->json($data, 200);
             }
-
-            // Jika gagal seperti masalah koneksi atau apapun maka berikan response error
-            return response()->json([
-                'data' => $query,
-                '__message' => 'News tidak berhasil diambil, coba kembali beberapa saat',
-                '__func' => 'News detail',
-            ], 500);
+    
+            return response()->json($data, 500);
         }
-
-        // Jika ID tidak tersedia maka tampilkan response error
-        return response()->json([
-            'data' => 'ID News: ' . $id_news,
-            '__message' => 'News tidak berhasil diambil, ID News tidak ditemukan',
-            '__func' => 'News detail',
-        ], 500);
+        
+        return response()->json("Galeri foto tidak ditemukan", 500);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | DELETE
-    |--------------------------------------------------------------------------
-    */
-    public function delete($id_news)
+    public function delete($gallery_image_id)
     {
-        // Cek jika ID News yang diberikan merupakan Integer
-        if (!is_numeric($id_news)) {
-            return response()->json([
-                'data' => 'ID News: ' . $id_news,
-                '__message' => 'News tidak berhasil dihapus, ID News harus berupa Integer',
-                '__func' => 'News delete',
-            ], 422);
+        if (!is_numeric($gallery_image_id)) {
+            return response()->json("Id galeri foto harus bilangan bulat", 422);
         }
 
-        // Cek jika ID News yang diberikan apakah tersedia di tabel
-        if (news::where('id', $id_news)->exists()) {
+        if (GalleryImage::where('id', $gallery_image_id)->exists()) {
 
             // Eksekusi penghapusan data News
-            $query = news::where('id', $id_news)->delete();
+            $data = GalleryImage::where('id', $gallery_image_id)->delete();
 
-            // Jika eksekusi query berhasil maka berikan response success
-            if ($query) {
-                return response()->json([
-                    'data' => $query,
-                    '__message' => 'News berhasil dihapus',
-                    '__func' => 'News delete',
-                ], 200);
+            if ($data) {
+                return response()->json($data, 200);
             }
-
-            // Jika gagal seperti masalah koneksi atau apapun maka berikan response error
-            return response()->json([
-                'data' => $query,
-                '__message' => 'News tidak berhasil dihapus, coba kembali beberapa saat',
-                '__func' => 'News delete',
-            ], 500);
+    
+            return response()->json($data, 500);
         }
 
-        // Jika ID tidak tersedia maka tampilkan response error
-        return response()->json([
-            'data' => 'ID News: ' . $id_news,
-            '__message' => 'News tidak berhasil dihapus, ID News tidak ditemukan',
-            '__func' => 'News delete',
-        ], 500);
+        return response()->json("Galeri foto tidak ditemukan", 500);
     }
 }

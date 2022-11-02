@@ -17,6 +17,7 @@ use App\Http\Controllers\videoitemgalleriController;
 use App\Http\Controllers\staticpageController;
 use App\Http\Controllers\Private\UkmController;
 use App\Http\Controllers\menuController;
+use App\Http\Controllers\Private\AgendaController;
 use App\Http\Controllers\Private\AnnouncementController;
 use App\Http\Controllers\Private\GalleryImageController;
 use App\Http\Controllers\Private\GalleryVideoController;
@@ -29,29 +30,50 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
         Route::prefix('news-category')->group(function () {
             Route::get('/', [NewsCategoryController::class, 'list']);
+            Route::get('/{news_category_id}', [NewsCategoryController::class, 'detail']);
             Route::post('/', [NewsCategoryController::class, 'create']);
+            Route::post('/{news_category_id}', [NewsCategoryController::class, 'update']);
+            Route::delete('/{news_category_id}', [NewsCategoryController::class, 'delete']);
         });
     
         Route::prefix('news')->group(function () {
             Route::get('/', [NewsController::class, 'list']);
             Route::post('/', [NewsController::class, 'create']);
-            Route::get('/{id}', [NewsController::class, 'detail']);
-            Route::post('/{id}', [NewsController::class, 'update']);
+            Route::get('/{news_id}', [NewsController::class, 'detail']);
+            Route::post('/{news_id}', [NewsController::class, 'update']);
+            Route::delete('/{news_id}', [NewsController::class, 'delete']);
         });
 
         Route::prefix('gallery-image')->group(function () {
             Route::get('/', [GalleryImageController::class, 'list']);
             Route::post('/', [GalleryImageController::class, 'create']);
+            Route::get('/{gallery_image_id}', [GalleryImageController::class, 'detail']);
+            Route::post('/{gallery_image_id}', [GalleryImageController::class, 'update']);
+            Route::delete('/{gallery_image_id}', [GalleryImageController::class, 'delete']);
         });
 
         Route::prefix('gallery-video')->group(function () {
             Route::get('/', [GalleryVideoController::class, 'list']);
             Route::post('/', [GalleryVideoController::class, 'create']);
+            Route::get('/{gallery_video_id}', [GalleryVideoController::class, 'detail']);
+            Route::post('/{gallery_video_id}', [GalleryVideoController::class, 'update']);
+            Route::delete('/{gallery_video_id}', [GalleryVideoController::class, 'delete']);
         });
 
         Route::prefix('announcement')->group(function () {
             Route::get('/', [AnnouncementController::class, 'list']);
+            Route::get('/{announcement_id}', [AnnouncementController::class, 'detail']);
+            Route::post('/{announcement_id}', [AnnouncementController::class, 'update']);
             Route::post('/', [AnnouncementController::class, 'create']);
+            Route::delete('/{announcement_id}', [AnnouncementController::class, 'delete']);
+        });
+
+        Route::prefix('agenda')->group(function () {
+            Route::get('/', [AgendaController::class, 'list']);
+            Route::get('/{agenda_id}', [AgendaController::class, 'detail']);
+            Route::post('/{agenda_id}', [AgendaController::class, 'update']);
+            Route::post('/', [AgendaController::class, 'create']);
+            Route::delete('/{agenda_id}', [AgendaController::class, 'delete']);
         });
 
         Route::prefix('ukm')->group(function () {

@@ -30,10 +30,6 @@ class UkmController extends Controller
         $validator = Validator::make($request->all(), [
             'nama' => ['string'],
             'singkatan_ukm' => ['string'],
-            'tentang_kami' => ['string'],
-            'visi' => ['string'],
-            'misi' => ['string'],
-            'tujuan' => ['string'],
             'facebook' => ['string'],
             'instagram' => ['string'],
             'twitter' => ['string'],
@@ -44,6 +40,7 @@ class UkmController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
+        // return response()->json($request->tentang_kami, 422);
 
         if ($request->hasFile('foto_ukm')) {
             $nama_file = $this->uploadFile($request->foto_ukm);

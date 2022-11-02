@@ -17,8 +17,8 @@ class CreateGalleryVideoTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_ukm');
             $table->text('youtube_id');
-            $table->string('judul');
-            $table->string('deskripsi')->nullable();
+            $table->text('judul');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
     
             $table->foreign('id_ukm')->references('id')->on('ukm')->onDelete('cascade')->onUpdate('cascade');
