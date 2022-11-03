@@ -280,10 +280,10 @@ class NewsController extends Controller
             return response()->json("UKM tidak ditemukan", 500);
         }
 
-        if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%']])->exists()) {
+        if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%']])->exists()) {
             if ($request->id_kategori != 'semua') {
 
-                if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])->exists()) {
+                if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])->exists()) {
                     $data = news::select(
                         'news.id',
                         'news.id_ukm',
@@ -294,7 +294,7 @@ class NewsController extends Controller
                         'news.created_at',
                         'news_kategori.nama_kategori',
                     )
-                    ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])
+                    ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])
                     ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
                     ->orderBy('news.total_hit', 'DESC')
                     ->paginate(4);
@@ -314,7 +314,7 @@ class NewsController extends Controller
                     'news.created_at',
                     'news_kategori.nama_kategori',
                 )
-                ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%']])
+                ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%']])
                 ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
                 ->orderBy('news.total_hit', 'DESC')
                 ->paginate(4);

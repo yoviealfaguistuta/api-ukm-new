@@ -127,6 +127,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
 
@@ -147,6 +149,8 @@ class NewsSeeder extends Seeder
             <p>Rais Qoirul Nadi selaku ketua pelaksana berpesan &rdquo;untuk seluruh peserta agar mengikuti perlombaan dengan tertib&rdquo;. Ia juga berharap agar melalui acara ini Polinela dapat lebih dikenal oleh siswa-siswi SMP, SMA/SMK/Sederajat yang ada di Provinsi Lampung.</p>',
             'foto_news' => '/assets/images/data/1667295983_POMPROV_2022.jpg',
             'total_hit' => 251,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -161,6 +165,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan donor darah bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1ktZ6SXqH8Rd5hhA8kaKD2dvnf6O4q19D?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296069_DSC4092-1210x642.jpg',
             'total_hit' => 126,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -174,6 +180,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan Polinela Mengaji bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1Te3UWlmexrbyCdYmw1hlNaIUZzPoSfH_?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296129_DSC4205-1210x642.jpg',
             'total_hit' => 57,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -201,6 +209,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296217_Polinela-Wisuda-29-Oktober-2022-3.jpg',
             'total_hit' => 417,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -219,6 +229,8 @@ class NewsSeeder extends Seeder
             <p>Kelik Istanto, S.T., M.T. selaku Ketua Program Studi TRKJJ menambahkan, &ldquo;Jika waktu magang telah selesai dan perusahaan merekrut mahasiswa untuk bergabung di perusahaan tersebut, Program Studi TRKJJ telah menyepakati akan memfasilitasi penyelesaian Tugas Akhir (TA) secara daring sehingga peluang kerja bagi mahasiswa tidak hilang. Karena inti dari proses pendidikan di Perguruan Tinggi Vokasi, dalam hal ini Program Studi TRKJJ,&nbsp; adalah mendidik dan mengantarkan peserta didik mendapatkan pekerjaan dan atau berwirausaha di bidang konstruksi.&rdquo;</p>',
             'foto_news' => '/assets/images/data/1667296312_Mahasiswa-Akt-2019-1210x642.png',
             'total_hit' => 361,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -245,6 +257,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
 
@@ -263,6 +277,8 @@ class NewsSeeder extends Seeder
             <p>Rais Qoirul Nadi selaku ketua pelaksana berpesan &rdquo;untuk seluruh peserta agar mengikuti perlombaan dengan tertib&rdquo;. Ia juga berharap agar melalui acara ini Polinela dapat lebih dikenal oleh siswa-siswi SMP, SMA/SMK/Sederajat yang ada di Provinsi Lampung.</p>',
             'foto_news' => '/assets/images/data/1667295983_POMPROV_2022.jpg',
             'total_hit' => 251,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -277,6 +293,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan donor darah bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1ktZ6SXqH8Rd5hhA8kaKD2dvnf6O4q19D?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296069_DSC4092-1210x642.jpg',
             'total_hit' => 126,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -290,6 +308,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan Polinela Mengaji bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1Te3UWlmexrbyCdYmw1hlNaIUZzPoSfH_?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296129_DSC4205-1210x642.jpg',
             'total_hit' => 57,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -317,6 +337,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296217_Polinela-Wisuda-29-Oktober-2022-3.jpg',
             'total_hit' => 417,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -335,6 +357,8 @@ class NewsSeeder extends Seeder
             <p>Kelik Istanto, S.T., M.T. selaku Ketua Program Studi TRKJJ menambahkan, &ldquo;Jika waktu magang telah selesai dan perusahaan merekrut mahasiswa untuk bergabung di perusahaan tersebut, Program Studi TRKJJ telah menyepakati akan memfasilitasi penyelesaian Tugas Akhir (TA) secara daring sehingga peluang kerja bagi mahasiswa tidak hilang. Karena inti dari proses pendidikan di Perguruan Tinggi Vokasi, dalam hal ini Program Studi TRKJJ,&nbsp; adalah mendidik dan mengantarkan peserta didik mendapatkan pekerjaan dan atau berwirausaha di bidang konstruksi.&rdquo;</p>',
             'foto_news' => '/assets/images/data/1667296312_Mahasiswa-Akt-2019-1210x642.png',
             'total_hit' => 361,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -361,6 +385,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 4 
@@ -376,6 +402,8 @@ class NewsSeeder extends Seeder
             <p>Rais Qoirul Nadi selaku ketua pelaksana berpesan &rdquo;untuk seluruh peserta agar mengikuti perlombaan dengan tertib&rdquo;. Ia juga berharap agar melalui acara ini Polinela dapat lebih dikenal oleh siswa-siswi SMP, SMA/SMK/Sederajat yang ada di Provinsi Lampung.</p>',
             'foto_news' => '/assets/images/data/1667295983_POMPROV_2022.jpg',
             'total_hit' => 251,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -390,6 +418,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan donor darah bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1ktZ6SXqH8Rd5hhA8kaKD2dvnf6O4q19D?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296069_DSC4092-1210x642.jpg',
             'total_hit' => 126,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -403,6 +433,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan Polinela Mengaji bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1Te3UWlmexrbyCdYmw1hlNaIUZzPoSfH_?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296129_DSC4205-1210x642.jpg',
             'total_hit' => 57,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -430,6 +462,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296217_Polinela-Wisuda-29-Oktober-2022-3.jpg',
             'total_hit' => 417,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -448,6 +482,8 @@ class NewsSeeder extends Seeder
             <p>Kelik Istanto, S.T., M.T. selaku Ketua Program Studi TRKJJ menambahkan, &ldquo;Jika waktu magang telah selesai dan perusahaan merekrut mahasiswa untuk bergabung di perusahaan tersebut, Program Studi TRKJJ telah menyepakati akan memfasilitasi penyelesaian Tugas Akhir (TA) secara daring sehingga peluang kerja bagi mahasiswa tidak hilang. Karena inti dari proses pendidikan di Perguruan Tinggi Vokasi, dalam hal ini Program Studi TRKJJ,&nbsp; adalah mendidik dan mengantarkan peserta didik mendapatkan pekerjaan dan atau berwirausaha di bidang konstruksi.&rdquo;</p>',
             'foto_news' => '/assets/images/data/1667296312_Mahasiswa-Akt-2019-1210x642.png',
             'total_hit' => 361,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -474,6 +510,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
 
@@ -491,6 +529,8 @@ class NewsSeeder extends Seeder
             <p>Rais Qoirul Nadi selaku ketua pelaksana berpesan &rdquo;untuk seluruh peserta agar mengikuti perlombaan dengan tertib&rdquo;. Ia juga berharap agar melalui acara ini Polinela dapat lebih dikenal oleh siswa-siswi SMP, SMA/SMK/Sederajat yang ada di Provinsi Lampung.</p>',
             'foto_news' => '/assets/images/data/1667295983_POMPROV_2022.jpg',
             'total_hit' => 251,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -505,6 +545,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan donor darah bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1ktZ6SXqH8Rd5hhA8kaKD2dvnf6O4q19D?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296069_DSC4092-1210x642.jpg',
             'total_hit' => 126,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -518,6 +560,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan Polinela Mengaji bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1Te3UWlmexrbyCdYmw1hlNaIUZzPoSfH_?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296129_DSC4205-1210x642.jpg',
             'total_hit' => 57,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -545,6 +589,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296217_Polinela-Wisuda-29-Oktober-2022-3.jpg',
             'total_hit' => 417,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -563,6 +609,8 @@ class NewsSeeder extends Seeder
             <p>Kelik Istanto, S.T., M.T. selaku Ketua Program Studi TRKJJ menambahkan, &ldquo;Jika waktu magang telah selesai dan perusahaan merekrut mahasiswa untuk bergabung di perusahaan tersebut, Program Studi TRKJJ telah menyepakati akan memfasilitasi penyelesaian Tugas Akhir (TA) secara daring sehingga peluang kerja bagi mahasiswa tidak hilang. Karena inti dari proses pendidikan di Perguruan Tinggi Vokasi, dalam hal ini Program Studi TRKJJ,&nbsp; adalah mendidik dan mengantarkan peserta didik mendapatkan pekerjaan dan atau berwirausaha di bidang konstruksi.&rdquo;</p>',
             'foto_news' => '/assets/images/data/1667296312_Mahasiswa-Akt-2019-1210x642.png',
             'total_hit' => 361,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -589,6 +637,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 6
@@ -605,6 +655,8 @@ class NewsSeeder extends Seeder
             <p>Rais Qoirul Nadi selaku ketua pelaksana berpesan &rdquo;untuk seluruh peserta agar mengikuti perlombaan dengan tertib&rdquo;. Ia juga berharap agar melalui acara ini Polinela dapat lebih dikenal oleh siswa-siswi SMP, SMA/SMK/Sederajat yang ada di Provinsi Lampung.</p>',
             'foto_news' => '/assets/images/data/1667295983_POMPROV_2022.jpg',
             'total_hit' => 251,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -619,6 +671,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan donor darah bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1ktZ6SXqH8Rd5hhA8kaKD2dvnf6O4q19D?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296069_DSC4092-1210x642.jpg',
             'total_hit' => 126,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -632,6 +686,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan Polinela Mengaji bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1Te3UWlmexrbyCdYmw1hlNaIUZzPoSfH_?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296129_DSC4205-1210x642.jpg',
             'total_hit' => 57,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -659,6 +715,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296217_Polinela-Wisuda-29-Oktober-2022-3.jpg',
             'total_hit' => 417,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -677,6 +735,8 @@ class NewsSeeder extends Seeder
             <p>Kelik Istanto, S.T., M.T. selaku Ketua Program Studi TRKJJ menambahkan, &ldquo;Jika waktu magang telah selesai dan perusahaan merekrut mahasiswa untuk bergabung di perusahaan tersebut, Program Studi TRKJJ telah menyepakati akan memfasilitasi penyelesaian Tugas Akhir (TA) secara daring sehingga peluang kerja bagi mahasiswa tidak hilang. Karena inti dari proses pendidikan di Perguruan Tinggi Vokasi, dalam hal ini Program Studi TRKJJ,&nbsp; adalah mendidik dan mengantarkan peserta didik mendapatkan pekerjaan dan atau berwirausaha di bidang konstruksi.&rdquo;</p>',
             'foto_news' => '/assets/images/data/1667296312_Mahasiswa-Akt-2019-1210x642.png',
             'total_hit' => 361,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -703,6 +763,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 7
@@ -719,6 +781,8 @@ class NewsSeeder extends Seeder
             <p>Rais Qoirul Nadi selaku ketua pelaksana berpesan &rdquo;untuk seluruh peserta agar mengikuti perlombaan dengan tertib&rdquo;. Ia juga berharap agar melalui acara ini Polinela dapat lebih dikenal oleh siswa-siswi SMP, SMA/SMK/Sederajat yang ada di Provinsi Lampung.</p>',
             'foto_news' => '/assets/images/data/1667295983_POMPROV_2022.jpg',
             'total_hit' => 251,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -733,6 +797,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan donor darah bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1ktZ6SXqH8Rd5hhA8kaKD2dvnf6O4q19D?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296069_DSC4092-1210x642.jpg',
             'total_hit' => 126,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -746,6 +812,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan Polinela Mengaji bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1Te3UWlmexrbyCdYmw1hlNaIUZzPoSfH_?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296129_DSC4205-1210x642.jpg',
             'total_hit' => 57,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -773,6 +841,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296217_Polinela-Wisuda-29-Oktober-2022-3.jpg',
             'total_hit' => 417,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -791,6 +861,8 @@ class NewsSeeder extends Seeder
             <p>Kelik Istanto, S.T., M.T. selaku Ketua Program Studi TRKJJ menambahkan, &ldquo;Jika waktu magang telah selesai dan perusahaan merekrut mahasiswa untuk bergabung di perusahaan tersebut, Program Studi TRKJJ telah menyepakati akan memfasilitasi penyelesaian Tugas Akhir (TA) secara daring sehingga peluang kerja bagi mahasiswa tidak hilang. Karena inti dari proses pendidikan di Perguruan Tinggi Vokasi, dalam hal ini Program Studi TRKJJ,&nbsp; adalah mendidik dan mengantarkan peserta didik mendapatkan pekerjaan dan atau berwirausaha di bidang konstruksi.&rdquo;</p>',
             'foto_news' => '/assets/images/data/1667296312_Mahasiswa-Akt-2019-1210x642.png',
             'total_hit' => 361,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -817,6 +889,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
 
@@ -834,6 +908,8 @@ class NewsSeeder extends Seeder
             <p>Rais Qoirul Nadi selaku ketua pelaksana berpesan &rdquo;untuk seluruh peserta agar mengikuti perlombaan dengan tertib&rdquo;. Ia juga berharap agar melalui acara ini Polinela dapat lebih dikenal oleh siswa-siswi SMP, SMA/SMK/Sederajat yang ada di Provinsi Lampung.</p>',
             'foto_news' => '/assets/images/data/1667295983_POMPROV_2022.jpg',
             'total_hit' => 251,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -848,6 +924,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan donor darah bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1ktZ6SXqH8Rd5hhA8kaKD2dvnf6O4q19D?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296069_DSC4092-1210x642.jpg',
             'total_hit' => 126,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -861,6 +939,8 @@ class NewsSeeder extends Seeder
             <p>Dokumentasi kegiatan Polinela Mengaji bisa dilihat&nbsp;<a href="https://drive.google.com/drive/folders/1Te3UWlmexrbyCdYmw1hlNaIUZzPoSfH_?usp=sharing" target="_blank" rel="noopener noreferrer">disini</a></p>',
             'foto_news' => '/assets/images/data/1667296129_DSC4205-1210x642.jpg',
             'total_hit' => 57,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -888,6 +968,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296217_Polinela-Wisuda-29-Oktober-2022-3.jpg',
             'total_hit' => 417,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -906,6 +988,8 @@ class NewsSeeder extends Seeder
             <p>Kelik Istanto, S.T., M.T. selaku Ketua Program Studi TRKJJ menambahkan, &ldquo;Jika waktu magang telah selesai dan perusahaan merekrut mahasiswa untuk bergabung di perusahaan tersebut, Program Studi TRKJJ telah menyepakati akan memfasilitasi penyelesaian Tugas Akhir (TA) secara daring sehingga peluang kerja bagi mahasiswa tidak hilang. Karena inti dari proses pendidikan di Perguruan Tinggi Vokasi, dalam hal ini Program Studi TRKJJ,&nbsp; adalah mendidik dan mengantarkan peserta didik mendapatkan pekerjaan dan atau berwirausaha di bidang konstruksi.&rdquo;</p>',
             'foto_news' => '/assets/images/data/1667296312_Mahasiswa-Akt-2019-1210x642.png',
             'total_hit' => 361,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news')->insert([
@@ -932,6 +1016,8 @@ class NewsSeeder extends Seeder
             </figure>',
             'foto_news' => '/assets/images/data/1667296403_Polinela-Workshop-Pengelolaan-Agribisnis-dan-MoU-dengan-Sayurbox-4.jpg',
             'total_hit' => 115,
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
     }
 }

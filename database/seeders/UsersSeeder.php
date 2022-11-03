@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder
     {
         DB::table('users')->insert([
             'id_ukm' => 1,
-            'name' => 'Akun Ketua Poltapala',
+            'name' => 'Ketua Poltapala',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmplpa@gmail.com',
@@ -31,7 +31,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'id_ukm' => 2,
-            'name' => 'Akun Ketua English Club',
+            'name' => 'Ketua English Club',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmec@gmail.com',
@@ -42,7 +42,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'id_ukm' => 3,
-            'name' => 'Akun Ketua Garda',
+            'name' => 'Ketua Garda',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmgd@gmail.com',
@@ -53,7 +53,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'id_ukm' => 4,
-            'name' => 'Akun Ketua Olahraga',
+            'name' => 'Ketua Olahraga',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmor@gmail.com',
@@ -64,7 +64,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'id_ukm' => 5,
-            'name' => 'Akun Ketua Bidang Seni',
+            'name' => 'Ketua Bidang Seni',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmbs@gmail.com',
@@ -75,7 +75,7 @@ class UsersSeeder extends Seeder
         
         DB::table('users')->insert([
             'id_ukm' => 6,
-            'name' => 'Akun Ketua AL Banna',
+            'name' => 'Ketua AL Banna',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmalb@gmail.com',
@@ -86,7 +86,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'id_ukm' => 7,
-            'name' => 'Akun Ketua Pers Sukma',
+            'name' => 'Ketua Pers Sukma',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmps@gmail.com',
@@ -97,7 +97,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'id_ukm' => 8,
-            'name' => 'Akun Ketua Koperasi Mahasiswa',
+            'name' => 'Ketua Koperasi Mahasiswa',
             'position' => 'ketua',
             'foto_profile' => '/assets/images/data/default-user.png',
             'email' => 'ukmkm@gmail.com',

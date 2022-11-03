@@ -20,11 +20,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 1,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 1,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 2
@@ -32,11 +36,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 2,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 2,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 3
@@ -44,11 +52,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 3,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 3,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 4
@@ -56,11 +68,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 4,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 4,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 5
@@ -68,11 +84,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 5,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 5,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 6
@@ -80,11 +100,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 6,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 6,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 7
@@ -92,11 +116,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 7,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 7,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         // 8
@@ -104,11 +132,15 @@ class NewsCategorySeeder extends Seeder
         DB::table('news_kategori')->insert([
             'id_ukm' => 8,
             'nama_kategori' => 'Mahasiswa',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
 
         DB::table('news_kategori')->insert([
             'id_ukm' => 8,
             'nama_kategori' => 'Kegiatan',
+            'created_at' => '2022-08-17 15:20:07',
+            'updated_at' => '2022-08-17 15:20:07',
         ]);
     }
 }
