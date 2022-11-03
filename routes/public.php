@@ -2,22 +2,7 @@
 
 use App\Http\Controllers\AgendaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\artikelController;
-use App\Http\Controllers\artikelhitController;
-use App\Http\Controllers\artikelkategoriController;
-// use App\Http\Controllers\newsController;
-use App\Http\Controllers\newshitController;
-use App\Http\Controllers\newskategoriController;
-use App\Http\Controllers\dokumenController;
-use App\Http\Controllers\dokumenitemController;
-use App\Http\Controllers\imagegalleriController;
-use App\Http\Controllers\imageitemgalleriController;
-use App\Http\Controllers\videogalleriController;
-use App\Http\Controllers\videoitemgalleriController;
-use App\Http\Controllers\staticpageController;
 use App\Http\Controllers\UkmController;
-use App\Http\Controllers\menuController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\GalleryImageController;
