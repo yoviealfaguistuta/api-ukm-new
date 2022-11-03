@@ -22,6 +22,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\GalleryVideoController;
+use App\Http\Controllers\NewsCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,10 @@ Route::prefix('news')->group(function () {
     Route::get('/related', [NewsController::class, 'related']);
     Route::get('/main-home-news', [NewsController::class, 'main_home_news']);
     Route::get('/detail/{news_id}', [NewsController::class, 'detail']);
+});
+
+Route::prefix('news-category')->group(function () {
+    Route::get('/highlight', [NewsCategoryController::class, 'highlight']);
 });
 
 Route::prefix('announcement')->group(function () {

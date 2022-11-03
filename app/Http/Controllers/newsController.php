@@ -280,22 +280,50 @@ class NewsController extends Controller
             return response()->json("UKM tidak ditemukan", 500);
         }
 
-        $data = news::select(
-            'news.id',
-            'news.id_ukm',
-            'news.title',
-            'news.intro',
-            'news.foto_news',
-            'news.total_hit',
-            'news.created_at',
-            'news_kategori.nama_kategori',
-        )
-        ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%']])
-        ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
-        ->orderBy('news.total_hit', 'DESC')
-        ->paginate(4);
+        if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%']])->exists()) {
+            if ($request->id_kategori != 'semua') {
 
-        return response()->json($data, 200);
+                if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])->exists()) {
+                    $data = news::select(
+                        'news.id',
+                        'news.id_ukm',
+                        'news.title',
+                        'news.intro',
+                        'news.foto_news',
+                        'news.total_hit',
+                        'news.created_at',
+                        'news_kategori.nama_kategori',
+                    )
+                    ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])
+                    ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
+                    ->orderBy('news.total_hit', 'DESC')
+                    ->paginate(4);
+                }
+
+                return response()->json(false, 200);
+
+            } else {
+                
+                $data = news::select(
+                    'news.id',
+                    'news.id_ukm',
+                    'news.title',
+                    'news.intro',
+                    'news.foto_news',
+                    'news.total_hit',
+                    'news.created_at',
+                    'news_kategori.nama_kategori',
+                )
+                ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'ILIKE', '%' . $request->judul . '%']])
+                ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
+                ->orderBy('news.total_hit', 'DESC')
+                ->paginate(4);
+            }
+
+            return response()->json($data, 200);
+        }
+        
+        return response()->json(false, 500);
     }
 
     /**
@@ -486,6 +514,7 @@ class NewsController extends Controller
                 'news.id',
                 'news.id_ukm',
                 'news.title',
+                'news.intro',
                 'news.foto_news',
                 'news.total_hit',
                 'news.created_at',
@@ -502,6 +531,7 @@ class NewsController extends Controller
                 'news.id',
                 'news.id_ukm',
                 'news.title',
+                'news.intro',
                 'news.foto_news',
                 'news.total_hit',
                 'news.created_at',
