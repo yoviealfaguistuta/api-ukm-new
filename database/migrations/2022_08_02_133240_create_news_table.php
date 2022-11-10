@@ -23,7 +23,7 @@ class CreateNewsTable extends Migration
             $table->text('content');
             $table->text('foto_news');
             $table->bigInteger('total_hit');
-            $table->bigInteger('created_by');
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
 
             
