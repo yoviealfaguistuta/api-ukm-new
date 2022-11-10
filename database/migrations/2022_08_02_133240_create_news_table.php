@@ -23,12 +23,14 @@ class CreateNewsTable extends Migration
             $table->text('content');
             $table->text('foto_news');
             $table->bigInteger('total_hit');
+            $table->bigInteger('created_by');
             $table->timestamps();
 
             
             // $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_ukm')->references('id')->on('ukm')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_news_kategori')->references('id')->on('news_kategori')->onDelete('cascade')->onUpdate('cascade');  
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');  
         });
     }
 

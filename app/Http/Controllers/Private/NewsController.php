@@ -59,6 +59,7 @@ class NewsController extends Controller
                 'content' => $request->content,
                 'foto_news' => $nama_file,
                 'total_hit' => 0,
+                'created_by' => Auth::user()->id,
             ])->id;
 
             DB::commit();
@@ -71,12 +72,6 @@ class NewsController extends Controller
                 $e->getMessage()
             ], 500);
         }
-
-
-
-        
-
-        
     }
 
     public function update(Request $request, $id_news)

@@ -16,7 +16,8 @@ class news extends Model
         'intro', 
         'content',
         'foto_news',
-        'total_hit'
+        'total_hit',
+        'created_by'
     ];
 
 	protected $primaryKey = 'id';

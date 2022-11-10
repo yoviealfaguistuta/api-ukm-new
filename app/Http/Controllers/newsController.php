@@ -94,10 +94,14 @@ class NewsController extends Controller
                 'news.foto_news',
                 'news.created_at',
                 'news_kategori.nama_kategori',
+                'users.id AS user_id',
+                'users.name',
+                'users.foto_profile',
             )
             ->where('news.id_ukm', $request->id_ukm)
             ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
             ->orderBy('news.created_at', 'DESC')
+            ->join('users', 'users.id', 'news.created_by')
             ->first();
     
             return response()->json($data, 200);
@@ -196,7 +200,7 @@ class NewsController extends Controller
             ->where('news.id_ukm', $request->id_ukm)
             ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
             ->orderBy('news.total_hit', 'DESC')
-            ->limit(3)->get();
+            ->limit(4)->get();
 
             return response()->json($data, 200);
         }
@@ -282,8 +286,9 @@ class NewsController extends Controller
 
         if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%']])->exists()) {
             if ($request->id_kategori != 'semua') {
-
-                if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])->exists()) {
+                // dd($request->id_kategori);
+                // return response()->json(news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', (int)$request->id_kategori]])->exists(), 500);
+                if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', (int)$request->id_kategori]])->exists()) {
                     $data = news::select(
                         'news.id',
                         'news.id_ukm',
@@ -293,14 +298,18 @@ class NewsController extends Controller
                         'news.total_hit',
                         'news.created_at',
                         'news_kategori.nama_kategori',
+                        'users.id AS user_id',
+                        'users.name',
+                        'users.foto_profile',
                     )
-                    ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', $request->id_kategori]])
+                    ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', (int)$request->id_kategori]])
                     ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
+                    ->join('users', 'users.id', 'news.created_by')
                     ->orderBy('news.total_hit', 'DESC')
                     ->paginate(4);
                 }
 
-                return response()->json(false, 200);
+                return response()->json($data, 200);
 
             } else {
                 
@@ -313,9 +322,13 @@ class NewsController extends Controller
                     'news.total_hit',
                     'news.created_at',
                     'news_kategori.nama_kategori',
+                    'users.id AS user_id',
+                    'users.name',
+                    'users.foto_profile',
                 )
                 ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%']])
                 ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
+                ->join('users', 'users.id', 'news.created_by')
                 ->orderBy('news.total_hit', 'DESC')
                 ->paginate(4);
             }
@@ -414,9 +427,12 @@ class NewsController extends Controller
                 'news.created_at',
                 'news_kategori.id AS category_id',
                 'news_kategori.nama_kategori',
+                'users.id AS user_id',
+                'users.name',
             )
             ->where([['news.id_ukm', $request->id_ukm], ['news.id', $news_id]])
             ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
+            ->join('users', 'users.id', 'news.created_by')
             ->first();
     
             return response()->json($data, 200);
