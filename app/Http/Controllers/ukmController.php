@@ -66,7 +66,7 @@ class UkmController extends Controller
      *     )
      * )
      */
-    public function list()
+    public function list(Request $request)
     {
         $data = UKM::select(
             'ukm.id',
@@ -74,6 +74,7 @@ class UkmController extends Controller
             'ukm.foto_ukm',
             'ukm.tentang_kami',
         )
+        ->where('ukm.nama', 'LIKE', '%' . $request->nama . '%')
         ->paginate(6);
 
         return response()->json($data, 200);
