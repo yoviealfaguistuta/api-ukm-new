@@ -74,7 +74,8 @@ class UkmController extends Controller
             'ukm.foto_ukm',
             'ukm.tentang_kami',
         )
-        ->where('ukm.nama', 'LIKE', '%' . $request->nama . '%')
+        // ->where('LOWER(ukm.nama)', 'LIKE', '%' . $request->nama . '%')
+        ->whereRaw('lower(ukm.nama) like (?)',["%{$request->nama}%"])
         ->paginate(6);
 
         return response()->json($data, 200);

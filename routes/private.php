@@ -9,6 +9,7 @@ use App\Http\Controllers\Private\DashboardController;
 use App\Http\Controllers\Private\GalleryImageController;
 use App\Http\Controllers\Private\GalleryVideoController;
 use App\Http\Controllers\Private\NewsCategoryController;
+use App\Http\Controllers\Private\PendaftaranAnggotaController;
 use App\Http\Controllers\Private\UsersController;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -17,6 +18,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'dashboard']);
+        });
+
+        Route::prefix('pendaftaran-anggota')->group(function () {
+            Route::get('/list', [PendaftaranAnggotaController::class, 'list']);
+            Route::delete('/{id_pendaftaran_anggota}', [PendaftaranAnggotaController::class, 'delete']);
         });
         
         Route::prefix('news-category')->group(function () {

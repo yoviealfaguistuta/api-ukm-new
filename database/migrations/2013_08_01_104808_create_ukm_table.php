@@ -19,6 +19,7 @@ class CreateUkmTable extends Migration
             $table->enum('jenis', ['ormawa', 'ukm']);
             $table->string('singkatan_ukm', 100);
             $table->text('foto_ukm')->default('/assets/images/data/default-ukm.png');
+            $table->text('struktur_organisasi')->default('/assets/images/data/default-struktur.png');
             $table->text('tentang_kami')->nullable();
             $table->text('visi')->nullable();
             $table->text('misi')->nullable();

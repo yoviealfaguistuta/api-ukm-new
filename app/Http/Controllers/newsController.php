@@ -284,7 +284,7 @@ class NewsController extends Controller
             return response()->json("UKM tidak ditemukan", 500);
         }
 
-        if (news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%']])->exists()) {
+        if (news::where('news.id_ukm', $request->id_ukm)->whereRaw('lower(news.title) like (?)',["%{$request->judul}%"])->exists()) {
             if ($request->id_kategori != 'semua') {
                 // dd($request->id_kategori);
                 // return response()->json(news::where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', (int)$request->id_kategori]])->exists(), 500);
@@ -302,7 +302,8 @@ class NewsController extends Controller
                         'users.name',
                         'users.foto_profile',
                     )
-                    ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%'], ['news.id_news_kategori', (int)$request->id_kategori]])
+                    ->where([['news.id_ukm', $request->id_ukm], ['news.id_news_kategori', (int)$request->id_kategori]])
+                    ->whereRaw('lower(news.title) like (?)',["%{$request->judul}%"])
                     ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
                     ->join('users', 'users.id', 'news.created_by')
                     ->orderBy('news.total_hit', 'DESC')
@@ -326,7 +327,8 @@ class NewsController extends Controller
                     'users.name',
                     'users.foto_profile',
                 )
-                ->where([['news.id_ukm', $request->id_ukm], ['news.title', 'LIKE', '%' . $request->judul . '%']])
+                ->where('news.id_ukm', $request->id_ukm)
+                ->whereRaw('lower(news.title) like (?)',["%{$request->judul}%"])
                 ->join('news_kategori', 'news_kategori.id', 'news.id_news_kategori')
                 ->join('users', 'users.id', 'news.created_by')
                 ->orderBy('news.total_hit', 'DESC')
@@ -336,7 +338,7 @@ class NewsController extends Controller
             return response()->json($data, 200);
         }
         
-        return response()->json(false, 500);
+        return response()->json(false, 200);
     }
 
     /**

@@ -93,7 +93,7 @@ class GalleryImageController extends Controller
                 'gallery_image.foto',
             )
             ->where('gallery_image.id_ukm', $request->id_ukm)
-            ->limit(2)->get();
+            ->limit(6)->get();
     
             return response()->json($data, 200);
         }

@@ -73,6 +73,14 @@ class UkmController extends Controller
             ]);
         }
 
+        if ($request->hasFile('struktur_organisasi')) {
+            $nama_file = $this->uploadFile($request->struktur_organisasi);
+
+            $data = UKM::where('id', Auth::user()->id_ukm)->update([
+                'struktur_organisasi' => $nama_file,
+            ]);
+        }
+
         return response()->json($data, 200);
     }
 }

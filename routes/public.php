@@ -8,6 +8,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\GalleryVideoController;
 use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\PendaftaranAnggotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,10 @@ Route::prefix('gallery-image')->group(function () {
 Route::prefix('gallery-video')->group(function () {
     Route::get('/highlight', [GalleryVideoController::class, 'highlight']);
     Route::get('/main-gallery-video', [GalleryVideoController::class, 'main_home_gallery_video']);
+});
+
+Route::prefix('pendaftaran-anggota')->group(function () {
+    Route::post('/daftar/{id_ukm}', [PendaftaranAnggotaController::class, 'daftar']);
 });
 
 // Route::prefix('ukm')->group(function () {
