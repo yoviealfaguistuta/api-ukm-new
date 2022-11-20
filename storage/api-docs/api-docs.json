@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": null,
+            "url": "http://localhost",
             "description": "Production"
         }
     ],
