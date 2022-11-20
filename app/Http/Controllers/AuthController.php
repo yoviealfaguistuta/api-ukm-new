@@ -7,9 +7,58 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 // use http\Env\Response;
 
+ /**
+ * @OA\SecurityScheme(
+ *     type="http",
+ *     description="Login with email and password to get the authentication token",
+ *     name="Token based Based",
+ *     in="header",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     securityScheme="apiAuth",
+ * )
+ */
 class AuthController extends Controller
 {
-
+    /**
+     * @OA\Post(
+     * path="/login",
+     * summary="Autentikasi",
+     * description="Mendapatkan JWT untuk akses private API",
+     * tags={"Login"},
+     *   @OA\RequestBody(
+     *       @OA\MediaType(
+     *           mediaType="multipart/form-data",
+     *           @OA\Schema(
+     *               required={"email","password"},
+     *               type="object", 
+     *               @OA\Property(
+     *                  property="email",
+     *                  type="string",
+     *                  description="Email UKM, Ex: ukmplpa@gmail.com",
+     *               ),
+     *               @OA\Property(
+     *                  property="password",
+     *                  type="string",
+     *                  description="Password UKM, Ex: 12345678",
+     *               ),
+     *           ),
+     *       )
+     *   ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="_id",
+     *                 type="boolean",
+     *                 example="true"
+     *             )
+     *         )
+     *     ),
+     *     security={{ "apiAuth": {} }}
+     *  )
+     */
     public function login(Request $request){
 
         // Validiasi data yang diberikan oleh frontend

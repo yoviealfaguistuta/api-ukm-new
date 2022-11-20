@@ -11,6 +11,25 @@ use Illuminate\Support\Facades\Validator;
 
 class AgendaController extends Controller
 {
+    /**
+     * Daftar Agenda
+     * @OA\Get (
+     *     path="/private/agenda",
+     *     tags={"Agenda"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="_id",
+     *                 type="boolean",
+     *                 example="true"
+     *             )
+     *         )
+     *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function list()
     {
         $data = Agenda::select(
@@ -28,6 +47,66 @@ class AgendaController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/agenda",
+     * summary="Membuat Agenda",
+     * description="Membuat informasi agenda",
+     * tags={"Agenda"},
+
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"image","title", "content", "lokasi", "tanggal", "waktu"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="image",
+    *                  type="file",
+    *                  description="Gambar agenda",
+    *               ),
+    *               @OA\Property(
+    *                  property="title",
+    *                  type="string",
+    *                  description="Judul informasi agenda",
+    *               ),
+    *               @OA\Property(
+    *                  property="content",
+    *                  type="string",
+    *                  description="Isi agenda (Use WYSWIG)",
+    *               ),
+    *               @OA\Property(
+    *                  property="lokasi",
+    *                  type="string",
+    *                  description="Lokasi agenda",
+    *               ),
+    *               @OA\Property(
+    *                  property="tanggal",
+    *                  type="string",
+    *                  description="Tanggal dimulai. Ex: YYYY-MM-DD (SQL Format Default)",
+    *               ),
+    *               @OA\Property(
+    *                  property="waktu",
+    *                  type="string",
+    *                  description="Waktu dimulai. Ex: h:mm (Moment JS Format)",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -65,6 +144,74 @@ class AgendaController extends Controller
         return response()->json(false, 500);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/agenda/{agenda_id}",
+     * summary="Perbarui agenda",
+     * description="Perbarui informasi agenda",
+     * tags={"Agenda"},
+     *     @OA\Parameter(
+     *         name="agenda_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"image","title", "content", "lokasi", "tanggal", "waktu"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="image",
+    *                  type="file",
+    *                  description="Gambar agenda",
+    *               ),
+    *               @OA\Property(
+    *                  property="title",
+    *                  type="string",
+    *                  description="Judul informasi agenda",
+    *               ),
+    *               @OA\Property(
+    *                  property="content",
+    *                  type="string",
+    *                  description="Isi agenda (Use WYSWIG)",
+    *               ),
+    *               @OA\Property(
+    *                  property="lokasi",
+    *                  type="string",
+    *                  description="Lokasi agenda",
+    *               ),
+    *               @OA\Property(
+    *                  property="tanggal",
+    *                  type="string",
+    *                  description="Tanggal dimulai. Ex: YYYY-MM-DD (SQL Format Default)",
+    *               ),
+    *               @OA\Property(
+    *                  property="waktu",
+    *                  type="string",
+    *                  description="Waktu dimulai. Ex: h:mm (Moment JS Format)",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function update(Request $request, $agenda_id)
     {
         $validator = Validator::make($request->all(), [
@@ -116,6 +263,35 @@ class AgendaController extends Controller
         return response()->json("Agenda tidak ditemukan", 500);
     }
 
+    /**
+     * @OA\Get(
+     * path="/private/agenda/{agenda_id}",
+     * summary="Detail agenda",
+     * description="Informasi lengkap data agenda",
+     * tags={"Agenda"},
+     *     @OA\Parameter(
+     *         name="agenda_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function detail($agenda_id)
     {
         if (!is_numeric($agenda_id)){
@@ -135,6 +311,35 @@ class AgendaController extends Controller
         return response()->json("Agenda tidak ditemukan", 500);
     }
 
+    /**
+     * @OA\Delete(
+     * path="/private/agenda/{agenda_id}",
+     * summary="Menghapus agenda",
+     * description="Menghapus informasi agenda",
+     * tags={"Agenda"},
+     *     @OA\Parameter(
+     *         name="agenda_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function delete($agenda_id)
     {
         if (!is_numeric($agenda_id)){

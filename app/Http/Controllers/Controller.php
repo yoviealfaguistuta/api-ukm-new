@@ -10,22 +10,24 @@ use Illuminate\Routing\Controller as BaseController;
 /**
 * @OA\Info(
 *      version="1.0.0",
-*      title="Dokumentasi API",
-*      description="API UKM Politeknik Negeri Lampung",
+*      title="API UKM Politeknik, BETA (80%) Finish",
+*      description="API UKM Politeknik Negeri Lampung. Response dapat berubah sewaktu waktu menyesuaikan perbaikan",
 *      @OA\Contact(
-*          email="leopradana013gmail.com"
+*          email="leopradana013@gmail.com"
 *      ),
 *      @OA\License(
-*          name="Apache 2.0",
+*          name="MIT License",
 *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
-*      )
+*      ),
 * )
 *
 * @OA\Server(
 *      url=L5_SWAGGER_CONST_HOST,
-*      description="Demo API Server"
+*      description="Hosted and Powered by Digital Ocean - Spaceart Foundation"
 * )
  */
+
+
 
 class Controller extends BaseController
 {
