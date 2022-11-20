@@ -13,4 +13,6 @@ use App\Http\Controllers\ukmController;
 |
 */
 
-// Route::get('/', [ukmController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
+});
