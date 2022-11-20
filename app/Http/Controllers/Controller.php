@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 /**
 * @OA\Info(
 *      version="1.0.0",
-*      title="API UKM Politeknik, BETA (80%) Finish",
+*      title="API UKM Politeknik",
 *      description="API UKM Politeknik Negeri Lampung. Response dapat berubah sewaktu waktu menyesuaikan perbaikan",
 *      @OA\Contact(
 *          email="leopradana013@gmail.com"
@@ -23,7 +23,7 @@ use Illuminate\Routing\Controller as BaseController;
 *
 * @OA\Server(
 *      url=L5_SWAGGER_CONST_HOST,
-*      description="Hosted and Powered by Digital Ocean - Spaceart Foundation"
+*      description="Production"
 * )
  */
 
