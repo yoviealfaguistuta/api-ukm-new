@@ -289,7 +289,7 @@ return [
          */
         'constants' => [
             // 'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://test2.spaceart.tech/api'),
-            'L5_SWAGGER_CONST_HOST' => env('APP_URL'),
+            'L5_SWAGGER_CONST_HOST' => env('APP_URL') . '/api',
         ],
     ],
 ];
