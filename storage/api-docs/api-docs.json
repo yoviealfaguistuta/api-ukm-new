@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API UKM Politeknik, BETA (80%) Finish",
+        "title": "API UKM Politeknik",
         "description": "API UKM Politeknik Negeri Lampung. Response dapat berubah sewaktu waktu menyesuaikan perbaikan",
         "contact": {
             "email": "leopradana013@gmail.com"
@@ -14,8 +14,8 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000/api",
-            "description": "Hosted and Powered by Digital Ocean - Spaceart Foundation"
+            "url": null,
+            "description": "Production"
         }
     ],
     "paths": {
