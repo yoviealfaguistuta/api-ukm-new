@@ -108,6 +108,16 @@ class AnnouncementController extends Controller
      *     path="/announcement/detail/{announcement_id}",
      *     tags={"Announcement"},
      *      @OA\Parameter(
+     *          parameter="announcement_id",
+     *          name="announcement_id",
+     *          description="ID Announcement",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="path",
+     *          required=true
+     *      ),
+     *      @OA\Parameter(
      *          parameter="id_ukm",
      *          name="id_ukm",
      *          description="ID UKM",

@@ -110,12 +110,12 @@ class AgendaController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => ['string'],
-            'content' => ['string'],
-            'image' => ['mimes:jpg,png,jpeg'],
-            'lokasi' => ['string'],
-            'tanggal' => ['string'],
-            'waktu' => ['string'],
+            'title' => ['string', 'required'],
+            'content' => ['string', 'required'],
+            'image' => ['mimes:jpg,png,jpeg', 'required'],
+            'lokasi' => ['string', 'required'],
+            'tanggal' => ['string', 'required'],
+            'waktu' => ['string', 'required'],
         ]);
 
         if ($validator->fails()) {

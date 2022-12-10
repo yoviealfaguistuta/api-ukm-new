@@ -104,7 +104,7 @@ class GalleryVideoController extends Controller
     /**
      * Menampilkan daftar seluruh galeri video
      * @OA\Get (
-     *     path="/gallery-image/main-gallery-video",
+     *     path="/gallery-video/main-gallery-video",
      *     tags={"Gallery Video"},
      *      @OA\Parameter(
      *          parameter="id_ukm",

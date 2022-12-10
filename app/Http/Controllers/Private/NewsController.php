@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Private;
 
 use App\Http\Controllers\Controller;
 use App\Models\news;
+use App\Models\news_kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,25 @@ use Illuminate\Support\Facades\Validator;
 
 class NewsController extends Controller
 {
+    /**
+     * Daftar Agenda
+     * @OA\Get (
+     *     path="/private/news",
+     *     tags={"News"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="_id",
+     *                 type="boolean",
+     *                 example="true"
+     *             )
+     *         )
+     *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function list()
     {
         $data = news::select(
@@ -30,14 +50,69 @@ class NewsController extends Controller
             return response()->json($data, 200);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/news",
+     * summary="Membuat Berita",
+     * description="Membuat informasi berita",
+     * tags={"News"},
+
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"foto_news","id_news_kategori", "title", "intro", "content"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="foto_news",
+    *                  type="file",
+    *                  description="Gambar berita",
+    *               ),
+    *               @OA\Property(
+    *                  property="id_news_kategori",
+    *                  type="string",
+    *                  description="Id kategori berita",
+    *               ),
+    *               @OA\Property(
+    *                  property="title",
+    *                  type="string",
+    *                  description="Judul berita",
+    *               ),
+    *               @OA\Property(
+    *                  property="intro",
+    *                  type="string",
+    *                  description="Kata pembuka",
+    *               ),
+    *               @OA\Property(
+    *                  property="content",
+    *                  type="string",
+    *                  description="isi berita (WYSWIG)",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'id_news_kategori' => ['required',],
-            'title' => ['string'],
-            'intro' => ['string'],
-            'content' => ['string'],
-            'foto_news' => ['mimes:jpg,png,jpeg'],
+            'title' => ['string', 'required'],
+            'intro' => ['string', 'required'],
+            'content' => ['string', 'required'],
+            'foto_news' => ['mimes:jpg,png,jpeg', 'required'],
         ]);
 
         if ($validator->fails()) {
@@ -49,6 +124,10 @@ class NewsController extends Controller
         }
 
         DB::beginTransaction();
+
+        if (!news_kategori::where('id', $request->id_news_kategori)->exists()) {
+            return response()->json("Kategori berita tidak ditemukan", 500);
+        }
 
         try {
             $data = news::create([
@@ -74,15 +153,77 @@ class NewsController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/news/{news_id}",
+     * summary="Perbarui Berita",
+     * description="Perbarui informasi berita",
+     * tags={"News"},
+     *     @OA\Parameter(
+     *         name="news_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"id_news_kategori", "title", "intro", "content"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="foto_news",
+    *                  type="file",
+    *                  description="Gambar berita",
+    *               ),
+    *               @OA\Property(
+    *                  property="id_news_kategori",
+    *                  type="string",
+    *                  description="Id kategori berita",
+    *               ),
+    *               @OA\Property(
+    *                  property="title",
+    *                  type="string",
+    *                  description="Judul berita",
+    *               ),
+    *               @OA\Property(
+    *                  property="intro",
+    *                  type="string",
+    *                  description="Kata pembuka",
+    *               ),
+    *               @OA\Property(
+    *                  property="content",
+    *                  type="string",
+    *                  description="isi berita (WYSWIG)",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function update(Request $request, $id_news)
     {
         // Validiasi data yang diberikan oleh frontend
         $validator = Validator::make($request->all(), [
-            'id_news_kategori' => ['string'],
-            'title' => ['string'],
-            'intro' => ['string'],
-            'content' => ['string'],
-            'total_hit' => ['integer'],
+            'id_news_kategori' => ['string', 'required'],
+            'title' => ['string', 'required'],
+            'intro' => ['string', 'required'],
+            'content' => ['string', 'required'],
         ]);
 
         // Jika data yang di validasi tidak sesuai maka berikan response error 422
@@ -106,6 +247,9 @@ class NewsController extends Controller
         // Cek jika ID News yang diberikan apakah tersedia di tabel
         if (news::where('id', $id_news)->exists()) {
 
+            if (!news_kategori::where('id', $request->id_news_kategori)->exists()) {
+                return response()->json("Kategori berita tidak ditemukan", 500);
+            }
             // Cek jika variabel "$request->foto_News" merupakan sebuah file
             if ($request->hasFile('foto_news')) {
 
@@ -156,6 +300,35 @@ class NewsController extends Controller
         ], 500);
     }
 
+    /**
+     * @OA\Get(
+     * path="/private/news/{news_id}",
+     * summary="Detail berita",
+     * description="Informasi lengkap data berita",
+     * tags={"News"},
+     *     @OA\Parameter(
+     *         name="news_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function detail($id_news)
     {
         if (!is_numeric($id_news)) {
@@ -180,7 +353,35 @@ class NewsController extends Controller
         return response()->json("Berita tidak berhasil diambil, ID News tidak ditemukan", 500);
     }
 
-
+/**
+     * @OA\Delete(
+     * path="/private/news/{news_id}",
+     * summary="Menghapus berita",
+     * description="Menghapus informasi berita",
+     * tags={"News"},
+     *     @OA\Parameter(
+     *         name="news_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function delete($news_id)
     {
         // Cek jika ID News yang diberikan merupakan Integer

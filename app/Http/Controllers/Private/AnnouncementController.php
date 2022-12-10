@@ -10,6 +10,25 @@ use Illuminate\Support\Facades\Validator;
 
 class AnnouncementController extends Controller
 {
+    /**
+     * Daftar Pengumuman
+     * @OA\Get (
+     *     path="/private/announcement",
+     *     tags={"Announcement"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="_id",
+     *                 type="boolean",
+     *                 example="true"
+     *             )
+     *         )
+     *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function list()
     {
         $data = Announcement::select(
@@ -26,12 +45,57 @@ class AnnouncementController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/announcement",
+     * summary="Membuat Pengumuman",
+     * description="Membuat informasi Pengumuman",
+     * tags={"Announcement"},
+
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"image","title", "content"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="image",
+    *                  type="file",
+    *                  description="Gambar pengumuman",
+    *               ),
+    *               @OA\Property(
+    *                  property="title",
+    *                  type="string",
+    *                  description="Judul informasi pengumuman",
+    *               ),
+    *               @OA\Property(
+    *                  property="content",
+    *                  type="string",
+    *                  description="Isi pengumuman (Use WYSWIG)",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => ['string'],
-            'content' => ['string'],
-            'image' => ['mimes:jpg,png,jpeg'],
+            'title' => ['string', 'required'],
+            'content' => ['string', 'required'],
+            'image' => ['mimes:jpg,png,jpeg', 'required'],
         ]);
 
         if ($validator->fails()) {
@@ -63,11 +127,65 @@ class AnnouncementController extends Controller
     | UPDATE
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * @OA\Post(
+     * path="/private/announcement/{announcement_id}",
+     * summary="Perbarui Pengumuman",
+     * description="Perbarui informasi Pengumuman",
+     * tags={"Announcement"},
+     *     @OA\Parameter(
+     *         name="announcement_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"image","title", "content"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="image",
+    *                  type="file",
+    *                  description="Gambar pengumuman",
+    *               ),
+    *               @OA\Property(
+    *                  property="title",
+    *                  type="string",
+    *                  description="Judul informasi pengumuman",
+    *               ),
+    *               @OA\Property(
+    *                  property="content",
+    *                  type="string",
+    *                  description="Isi pengumuman (Use WYSWIG)",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function update(Request $request, $announcement_id)
     {
         $validator = Validator::make($request->all(), [
-              'title' => ['required', 'string'],
-              'content' => ['required', 'string'],
+              'title' => ['required', 'string', 'required'],
+              'content' => ['required', 'string', 'required'],
         ]);
 
         if ($validator->fails()) {
@@ -105,6 +223,35 @@ class AnnouncementController extends Controller
         return response()->json("Pengumuman tidak ditemukan", 500);
     }
 
+    /**
+     * @OA\Get(
+     * path="/private/announcement/{announcement_id}",
+     * summary="Detail pengumuman",
+     * description="Informasi lengkap data pengumuman",
+     * tags={"Announcement"},
+     *     @OA\Parameter(
+     *         name="announcement_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function detail($announcement_id)
     {
         if (!is_numeric($announcement_id)){
@@ -124,6 +271,35 @@ class AnnouncementController extends Controller
         return response()->json("Pengumuman tidak ditemukan", 500);
     }
 
+    /**
+     * @OA\Delete(
+     * path="/private/announcement/{announcement_id}",
+     * summary="Menghapus pengumuman",
+     * description="Menghapus informasi pengumuman",
+     * tags={"Announcement"},
+     *     @OA\Parameter(
+     *         name="announcement_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function delete($announcement_id)
     {
         if (!is_numeric($announcement_id)){

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\GalleryImage;
 use App\Models\GalleryVideo;
 use App\Models\news;
@@ -14,7 +15,7 @@ class PendaftaranAnggotaController extends Controller
 {
     /**
      * Pendaftaran anggota UKM
-     * @OA\Get (
+     * @OA\Post (
      *     path="/pendaftaran-anggota/daftar/{id_ukm}",
      *     tags={"Pendaftaran Anggota"},
      *      @OA\Parameter(
@@ -24,9 +25,48 @@ class PendaftaranAnggotaController extends Controller
      *          @OA\Schema(
      *              type="integer"
      *          ),
-     *          in="query",
+     *          in="path",
      *          required=true
      *      ),
+     *    @OA\RequestBody(
+     *       @OA\MediaType(
+     *           mediaType="multipart/form-data",
+     *           @OA\Schema(
+     *               required={"nama","prodi", "jurusan", "email", "no_hp", "alasan_bergabung"},
+     *               type="object", 
+     *               @OA\Property(
+     *                  property="nama",
+     *                  type="string",
+     *                  description="Nama mahasiswa",
+     *               ),
+     *               @OA\Property(
+     *                  property="prodi",
+     *                  type="string",
+     *                  description="Prodi mahasiswa",
+     *               ),
+     *               @OA\Property(
+     *                  property="jurusan",
+     *                  type="string",
+     *                  description="Jurusan mahasiswa",
+     *               ),
+     *               @OA\Property(
+     *                  property="email",
+     *                  type="string",
+     *                  description="Email aktif mahasiswa",
+     *               ),
+     *               @OA\Property(
+     *                  property="no_hp",
+     *                  type="string",
+     *                  description="Nomor HP mahasiswa yang dapat dihubungi",
+     *               ),
+     *               @OA\Property(
+     *                  property="alasan_bergabung",
+     *                  type="string",
+     *                  description="Alasan bergabung ke UKM",
+     *               ),
+     *           ),
+     *       )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="success",

@@ -108,6 +108,16 @@ class AgendaController extends Controller
      * @OA\Get (
      *     path="/agenda/detail/{agenda_id}",
      *     tags={"Agenda"},
+     *     @OA\Parameter(
+     *          parameter="agenda_id",
+     *          name="agenda_id",
+     *          description="ID Agenda",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="path",
+     *          required=true
+     *      ),
      *      @OA\Parameter(
      *          parameter="id_ukm",
      *          name="id_ukm",

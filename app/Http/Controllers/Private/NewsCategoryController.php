@@ -28,12 +28,60 @@ use App\Models\news_kategori;
 
 class NewsCategoryController extends Controller
 {
+    /**
+     * Daftar Kategori Berita
+     * @OA\Get (
+     *     path="/private/news-category",
+     *     tags={"News Category"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="_id",
+     *                 type="boolean",
+     *                 example="true"
+     *             )
+     *         )
+     *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function list()
     {
         $data = news_kategori::where('id_ukm', Auth::user()->id_ukm)->paginate(5);
         return response()->json($data, 200);
     }
 
+    /**
+     * @OA\Get(
+     * path="/private/news-category/{news_category_id}",
+     * summary="Detail Kategori Berita",
+     * description="Informasi lengkap data kategori berita",
+     * tags={"News Category"},
+     *     @OA\Parameter(
+     *         name="news_category_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function detail($news_category_id)
     {
         $data = news_kategori::where([['id_ukm', Auth::user()->id_ukm], ['id', $news_category_id]])->first();
@@ -41,6 +89,41 @@ class NewsCategoryController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/news-category",
+     * summary="Membuat Kategori Berita",
+     * description="Membuat informasi kategori berita",
+     * tags={"News Category"},
+
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"nama_kategori"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="nama_kategori",
+    *                  type="string",
+    *                  description="Nama kategori berita",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -67,6 +150,49 @@ class NewsCategoryController extends Controller
         ], 200);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/news-category/{news_category_id}",
+     * summary="Perbarui Kategori Berita",
+     * description="Perbarui informasi kategori berita",
+     * tags={"News Category"},
+     *     @OA\Parameter(
+     *         name="news_category_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"nama_kategori"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="nama_kategori",
+    *                  type="string",
+    *                  description="Nama kategori berita",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function update($news_category_id, Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -88,6 +214,35 @@ class NewsCategoryController extends Controller
         return response()->json(false, 500);
     }
 
+    /**
+     * @OA\Delete(
+     * path="/private/news-category/{news_category_id}",
+     * summary="Menghapus Kategori Berita",
+     * description="Menghapus informasi kategori berita",
+     * tags={"News Category"},
+     *     @OA\Parameter(
+     *         name="news_category_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function delete($news_category_id)
     {
         // Cek jika ID News yang diberikan merupakan Integer

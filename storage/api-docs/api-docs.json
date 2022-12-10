@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://api-ukm.spaceart.tech/api",
+            "url": "http://127.0.0.1:8000/api",
             "description": "Production"
         }
     ],
@@ -102,6 +102,16 @@
                 "summary": "Menampilkan detail agenda",
                 "operationId": "0bdab274cb411aa2449f0b281afdfbad",
                 "parameters": [
+                    {
+                        "parameter": "agenda_id",
+                        "name": "agenda_id",
+                        "in": "path",
+                        "description": "ID Agenda",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "parameter": "id_ukm",
                         "name": "id_ukm",
@@ -252,6 +262,16 @@
                 "summary": "Menampilkan detail pengumuman",
                 "operationId": "61039c8695e650b9bd65fbc02773a9e4",
                 "parameters": [
+                    {
+                        "parameter": "announcement_id",
+                        "name": "announcement_id",
+                        "in": "path",
+                        "description": "ID Announcement",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "parameter": "id_ukm",
                         "name": "id_ukm",
@@ -600,13 +620,13 @@
                 }
             }
         },
-        "/gallery-image/main-gallery-video": {
+        "/gallery-video/main-gallery-video": {
             "get": {
                 "tags": [
                     "Gallery Video"
                 ],
                 "summary": "Menampilkan daftar seluruh galeri video",
-                "operationId": "379bb0d2557be5e51293bf80cc0ece1c",
+                "operationId": "908a6ab6016c06e83e24da555f806e0f",
                 "parameters": [
                     {
                         "parameter": "id_ukm",
@@ -917,6 +937,16 @@
                         "schema": {
                             "type": "integer"
                         }
+                    },
+                    {
+                        "parameter": "id_kategori",
+                        "name": "id_kategori",
+                        "in": "query",
+                        "description": "Sortir berdasarkan ID Kategori Ex: 'semua'",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -983,6 +1013,16 @@
                 "summary": "Menampilkan detail berita",
                 "operationId": "618952d748f935a8ed0dfae430acc15a",
                 "parameters": [
+                    {
+                        "parameter": "news_id",
+                        "name": "news_id",
+                        "in": "path",
+                        "description": "ID Berita",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "parameter": "id_ukm",
                         "name": "id_ukm",
@@ -1136,17 +1176,17 @@
             }
         },
         "/pendaftaran-anggota/daftar/{id_ukm}": {
-            "get": {
+            "post": {
                 "tags": [
                     "Pendaftaran Anggota"
                 ],
                 "summary": "Pendaftaran anggota UKM",
-                "operationId": "4886475cf4468f9d72ddf0ca910ef042",
+                "operationId": "7b179f39ddfd4fd4e750c60ccd5fbeec",
                 "parameters": [
                     {
                         "parameter": "id_ukm",
                         "name": "id_ukm",
-                        "in": "query",
+                        "in": "path",
                         "description": "ID UKM",
                         "required": true,
                         "schema": {
@@ -1154,6 +1194,49 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "nama",
+                                    "prodi",
+                                    "jurusan",
+                                    "email",
+                                    "no_hp",
+                                    "alasan_bergabung"
+                                ],
+                                "properties": {
+                                    "nama": {
+                                        "description": "Nama mahasiswa",
+                                        "type": "string"
+                                    },
+                                    "prodi": {
+                                        "description": "Prodi mahasiswa",
+                                        "type": "string"
+                                    },
+                                    "jurusan": {
+                                        "description": "Jurusan mahasiswa",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email aktif mahasiswa",
+                                        "type": "string"
+                                    },
+                                    "no_hp": {
+                                        "description": "Nomor HP mahasiswa yang dapat dihubungi",
+                                        "type": "string"
+                                    },
+                                    "alasan_bergabung": {
+                                        "description": "Alasan bergabung ke UKM",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "success",
@@ -1456,6 +1539,1700 @@
                 ]
             }
         },
+        "/private/announcement": {
+            "get": {
+                "tags": [
+                    "Announcement"
+                ],
+                "summary": "Daftar Pengumuman",
+                "operationId": "1177c73bae07a3afa4daa18206c3259f",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Announcement"
+                ],
+                "summary": "Membuat Pengumuman",
+                "description": "Membuat informasi Pengumuman",
+                "operationId": "dcc09eeef28c968faca9579489f2e241",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "image",
+                                    "title",
+                                    "content"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "description": "Gambar pengumuman",
+                                        "type": "file"
+                                    },
+                                    "title": {
+                                        "description": "Judul informasi pengumuman",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "description": "Isi pengumuman (Use WYSWIG)",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/announcement/{announcement_id}": {
+            "get": {
+                "tags": [
+                    "Announcement"
+                ],
+                "summary": "Detail pengumuman",
+                "description": "Informasi lengkap data pengumuman",
+                "operationId": "7953ecf37106ee483f8806526a0dbcc8",
+                "parameters": [
+                    {
+                        "name": "announcement_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Announcement"
+                ],
+                "summary": "Perbarui Pengumuman",
+                "description": "Perbarui informasi Pengumuman",
+                "operationId": "32559141f091703529191b1385adcf2b",
+                "parameters": [
+                    {
+                        "name": "announcement_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "image",
+                                    "title",
+                                    "content"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "description": "Gambar pengumuman",
+                                        "type": "file"
+                                    },
+                                    "title": {
+                                        "description": "Judul informasi pengumuman",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "description": "Isi pengumuman (Use WYSWIG)",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Announcement"
+                ],
+                "summary": "Menghapus pengumuman",
+                "description": "Menghapus informasi pengumuman",
+                "operationId": "2975ac455c534cc44b813c0e7bede110",
+                "parameters": [
+                    {
+                        "name": "announcement_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/dashboard": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Dashboard",
+                "operationId": "15d54ed00be0211af495f38ed01cecaf",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/gallery-image": {
+            "get": {
+                "tags": [
+                    "Gallery Image"
+                ],
+                "summary": "Daftar Galeri Foto",
+                "operationId": "4da2f74e7b41b8450b0bf10c55f3566c",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Gallery Image"
+                ],
+                "summary": "Membuat Galeri Foto",
+                "description": "Membuat galeri foto",
+                "operationId": "25146db3839e835d8065d97a90f97cc4",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "foto",
+                                    "judul",
+                                    "deskripsi"
+                                ],
+                                "properties": {
+                                    "foto": {
+                                        "description": "Foto",
+                                        "type": "file"
+                                    },
+                                    "judul": {
+                                        "description": "Judul informasi galeri foto",
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "description": "Deskripsi galeri foto",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/gallery-image/{gallery_image_id}": {
+            "get": {
+                "tags": [
+                    "Gallery Image"
+                ],
+                "summary": "Detail Galeri Foto",
+                "description": "Informasi lengkap data galeri foto",
+                "operationId": "3608ec2c5c5394d18aafcbf6456a3fac",
+                "parameters": [
+                    {
+                        "name": "gallery_image_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Gallery Image"
+                ],
+                "summary": "Perbarui Galeri Foto",
+                "description": "Perbarui informasi galeri foto",
+                "operationId": "53d4f0aa9eaf3e75f7e82a88415dea54",
+                "parameters": [
+                    {
+                        "name": "gallery_image_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "foto",
+                                    "judul",
+                                    "deskripsi"
+                                ],
+                                "properties": {
+                                    "foto": {
+                                        "description": "Foto",
+                                        "type": "file"
+                                    },
+                                    "judul": {
+                                        "description": "Judul informasi galeri foto",
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "description": "Deskripsi galeri foto",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Gallery Image"
+                ],
+                "summary": "Menghapus Galeri Foto",
+                "description": "Menghapus informasi galeri foto",
+                "operationId": "9a6f7654a1e6bc0f88bd58f7cc6c2074",
+                "parameters": [
+                    {
+                        "name": "gallery_image_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/gallery-video": {
+            "get": {
+                "tags": [
+                    "Gallery Video"
+                ],
+                "summary": "Daftar Galeri Video",
+                "operationId": "6539023df256022a3c3cb883b1be263a",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Gallery Video"
+                ],
+                "summary": "Membuat Galeri Video",
+                "description": "Membuat informasi galeri video",
+                "operationId": "d4b3fe02982fd75fe636a1e2f43dfbbc",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "youtube_id",
+                                    "judul",
+                                    "deskripsi"
+                                ],
+                                "properties": {
+                                    "youtube_id": {
+                                        "description": "Id youtube",
+                                        "type": "string"
+                                    },
+                                    "judul": {
+                                        "description": "Judul informasi galeri video",
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "description": "Isi galeri video",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/gallery-video/{gallery_video_id}": {
+            "get": {
+                "tags": [
+                    "Gallery Video"
+                ],
+                "summary": "Detail Galeri Video",
+                "description": "Informasi lengkap data galeri video",
+                "operationId": "289a82b149ac068f78faa9a10e64454f",
+                "parameters": [
+                    {
+                        "name": "gallery_video_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Gallery Video"
+                ],
+                "summary": "Perbarui Galeri Video",
+                "description": "Perbarui informasi galeri video",
+                "operationId": "84a9170f22a32bd3d464618c9b4bcda9",
+                "parameters": [
+                    {
+                        "name": "gallery_video_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "youtube_id",
+                                    "judul",
+                                    "deskripsi"
+                                ],
+                                "properties": {
+                                    "youtube_id": {
+                                        "description": "Id youtube",
+                                        "type": "string"
+                                    },
+                                    "judul": {
+                                        "description": "Judul informasi galeri video",
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "description": "Isi galeri video",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Gallery Video"
+                ],
+                "summary": "Menghapus Galeri Video",
+                "description": "Menghapus informasi galeri video",
+                "operationId": "856e665d269d7184dcad2babc03c8869",
+                "parameters": [
+                    {
+                        "name": "gallery_video_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/news-category": {
+            "get": {
+                "tags": [
+                    "News Category"
+                ],
+                "summary": "Daftar Kategori Berita",
+                "operationId": "7fd72b14231f457ff5e2503148f82422",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "News Category"
+                ],
+                "summary": "Membuat Kategori Berita",
+                "description": "Membuat informasi kategori berita",
+                "operationId": "fd6fe9a11d153b4a7bd87fd171dfefb0",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "nama_kategori"
+                                ],
+                                "properties": {
+                                    "nama_kategori": {
+                                        "description": "Nama kategori berita",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/news-category/{news_category_id}": {
+            "get": {
+                "tags": [
+                    "News Category"
+                ],
+                "summary": "Detail Kategori Berita",
+                "description": "Informasi lengkap data kategori berita",
+                "operationId": "ed004903d7f60a868c9ceef09673818c",
+                "parameters": [
+                    {
+                        "name": "news_category_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "News Category"
+                ],
+                "summary": "Perbarui Kategori Berita",
+                "description": "Perbarui informasi kategori berita",
+                "operationId": "78311ff95ada46d9e6163efb4c39295b",
+                "parameters": [
+                    {
+                        "name": "news_category_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "nama_kategori"
+                                ],
+                                "properties": {
+                                    "nama_kategori": {
+                                        "description": "Nama kategori berita",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "News Category"
+                ],
+                "summary": "Menghapus Kategori Berita",
+                "description": "Menghapus informasi kategori berita",
+                "operationId": "9531143a4a3054e4298db32370c64e89",
+                "parameters": [
+                    {
+                        "name": "news_category_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/news": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Daftar Agenda",
+                "operationId": "1c0bf46b01e5adf85a248a014fc3d726",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Membuat Berita",
+                "description": "Membuat informasi berita",
+                "operationId": "7383e04bc6c4400f89170a5794dbf764",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "foto_news",
+                                    "id_news_kategori",
+                                    "title",
+                                    "intro",
+                                    "content"
+                                ],
+                                "properties": {
+                                    "foto_news": {
+                                        "description": "Gambar berita",
+                                        "type": "file"
+                                    },
+                                    "id_news_kategori": {
+                                        "description": "Id kategori berita",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "Judul berita",
+                                        "type": "string"
+                                    },
+                                    "intro": {
+                                        "description": "Kata pembuka",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "description": "isi berita (WYSWIG)",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/news/{news_id}": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Detail berita",
+                "description": "Informasi lengkap data berita",
+                "operationId": "e119a7bc696bce274fce5991c78ea310",
+                "parameters": [
+                    {
+                        "name": "news_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Perbarui Berita",
+                "description": "Perbarui informasi berita",
+                "operationId": "0ba3c51c18719277039af3596fb87359",
+                "parameters": [
+                    {
+                        "name": "news_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "foto_news",
+                                    "id_news_kategori",
+                                    "title",
+                                    "intro",
+                                    "content"
+                                ],
+                                "properties": {
+                                    "foto_news": {
+                                        "description": "Gambar berita",
+                                        "type": "file"
+                                    },
+                                    "id_news_kategori": {
+                                        "description": "Id kategori berita",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "Judul berita",
+                                        "type": "string"
+                                    },
+                                    "intro": {
+                                        "description": "Kata pembuka",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "description": "isi berita (WYSWIG)",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Menghapus berita",
+                "description": "Menghapus informasi berita",
+                "operationId": "3058ef9aff7eb1992f568be835adaf43",
+                "parameters": [
+                    {
+                        "name": "news_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/pendaftaran-anggota/list": {
+            "get": {
+                "tags": [
+                    "Pendaftaran Anggota"
+                ],
+                "summary": "Daftar Pendaftaran Anggota",
+                "operationId": "29a3a7cb1de740751ad16e4a4c5ddbec",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/pendaftaran-anggota/{id_pendaftaran_anggota}": {
+            "delete": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Menghapus pendaftaran anggota",
+                "description": "Menghapus informasi pendaftaran anggota",
+                "operationId": "31c20c2d6d78330b7f7d876886cfa194",
+                "parameters": [
+                    {
+                        "name": "id_pendaftaran_anggota",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/ukm": {
+            "get": {
+                "tags": [
+                    "UKM"
+                ],
+                "summary": "Detail UKM",
+                "description": "Informasi lengkap data UKM",
+                "operationId": "63fcc3e0222555b7aa56aefc002c198d",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "UKM"
+                ],
+                "summary": "Perbarui UKM",
+                "description": "Perbarui informasi UKM",
+                "operationId": "87c566e2be701c384e2fc2a8214bbdc8",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "foto_ukm",
+                                    "nama",
+                                    "singkatan_ukm",
+                                    "tentang_kami",
+                                    "visi",
+                                    "misi",
+                                    "tujuan",
+                                    "facebook",
+                                    "instagram",
+                                    "twitter",
+                                    "whatsapp"
+                                ],
+                                "properties": {
+                                    "foto_ukm": {
+                                        "description": "Logo UKM",
+                                        "type": "file"
+                                    },
+                                    "nama": {
+                                        "description": "Nama UKM",
+                                        "type": "string"
+                                    },
+                                    "singkatan_ukm": {
+                                        "description": "Singkatan UKM",
+                                        "type": "string"
+                                    },
+                                    "tentang_kami": {
+                                        "description": "Tentang UKM",
+                                        "type": "string"
+                                    },
+                                    "visi": {
+                                        "description": "Visi UKM",
+                                        "type": "string"
+                                    },
+                                    "misi": {
+                                        "description": "Misi UKM",
+                                        "type": "string"
+                                    },
+                                    "tujuan": {
+                                        "description": "Tujuan UKM",
+                                        "type": "string"
+                                    },
+                                    "facebook": {
+                                        "description": "Link facebook UKM",
+                                        "type": "string"
+                                    },
+                                    "instagram": {
+                                        "description": "Link instagram UKM",
+                                        "type": "string"
+                                    },
+                                    "twitter": {
+                                        "description": "Link twitter UKM",
+                                        "type": "string"
+                                    },
+                                    "whatsapp": {
+                                        "description": "Nomor whatsapp UKM",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/users/profile": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Profile",
+                "operationId": "620609d51ff16742c343a7aae8de1581",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Perbarui akun",
+                "description": "Perbarui informasi akun",
+                "operationId": "2c846052ea01d06a74aec2e5d0052134",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "position"
+                                ],
+                                "properties": {
+                                    "foto_profile": {
+                                        "description": "Foto Profile",
+                                        "type": "file"
+                                    },
+                                    "name": {
+                                        "description": "Nama",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email",
+                                        "type": "string"
+                                    },
+                                    "position": {
+                                        "description": "Jabatan Enum: (ketua, wakil, anggota)",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/users/tambah-anggota": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Membuat Anggota UKM",
+                "description": "Membuat anggota UKM baru",
+                "operationId": "3e6d5e24d8048e010ed28afe51cd3535",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "id_ukm",
+                                    "foto_profile",
+                                    "name",
+                                    "email",
+                                    "position",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "foto_profile": {
+                                        "description": "Foto Profile",
+                                        "type": "file"
+                                    },
+                                    "id_ukm": {
+                                        "description": "Id UKM",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "Nama",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email",
+                                        "type": "string"
+                                    },
+                                    "position": {
+                                        "description": "Jabatan Enum: (ketua, wakil, anggota)",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/private/users/delete-anggota/{id_users}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Menghapus anggota UKM",
+                "description": "Menghapus informasi anggota UKM",
+                "operationId": "b17895b6feaf90a0281c1345b249fabd",
+                "parameters": [
+                    {
+                        "name": "id_users",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "_id": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
         "/ukm": {
             "get": {
                 "tags": [
@@ -1584,134 +3361,6 @@
                                                 },
                                                 "type": "object"
                                             }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/newshit": {
-            "get": {
-                "tags": [
-                    "News Hit"
-                ],
-                "summary": "Get List News Hit",
-                "operationId": "1fbf0a3a48ad15a1abc53f77d1ad03e3",
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "rows": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "_id": {
-                                                        "type": "number",
-                                                        "example": "1"
-                                                    },
-                                                    "nama": {
-                                                        "type": "string",
-                                                        "example": "example nama"
-                                                    },
-                                                    "jenis": {
-                                                        "type": "enum",
-                                                        "example": "example jenis"
-                                                    },
-                                                    "singkatan_ukm": {
-                                                        "type": "string",
-                                                        "example": "example singkatan_ukm"
-                                                    },
-                                                    "foto_ukm": {
-                                                        "type": "text",
-                                                        "example": "example foto_ukm"
-                                                    },
-                                                    "keterangan": {
-                                                        "type": "string",
-                                                        "example": "example keterangan"
-                                                    },
-                                                    "updated_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    },
-                                                    "created_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/newshit/{id}": {
-            "get": {
-                "tags": [
-                    "News Hit"
-                ],
-                "summary": "Get Detail News Hit",
-                "operationId": "ab49b961d49cc25b8119e0e4a83a0d7d",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "_id": {
-                                            "type": "number",
-                                            "example": "1"
-                                        },
-                                        "nama": {
-                                            "type": "string",
-                                            "example": "example nama"
-                                        },
-                                        "jenis": {
-                                            "type": "enum",
-                                            "example": "example jenis"
-                                        },
-                                        "singkatan_ukm": {
-                                            "type": "string",
-                                            "example": "example singkatan_ukm"
-                                        },
-                                        "foto_ukm": {
-                                            "type": "text",
-                                            "example": "example foto_ukm"
-                                        },
-                                        "keterangan": {
-                                            "type": "string",
-                                            "example": "example keterangan"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2021-12-11T09:25:53.000000Z"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2021-12-11T09:25:53.000000Z"
                                         }
                                     },
                                     "type": "object"

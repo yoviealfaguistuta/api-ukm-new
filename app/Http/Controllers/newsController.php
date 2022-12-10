@@ -223,6 +223,16 @@ class NewsController extends Controller
      *          in="query",
      *          required=true
      *      ),
+     *      @OA\Parameter(
+     *          parameter="id_kategori",
+     *          name="id_kategori",
+     *          description="Sortir berdasarkan ID Kategori Ex: 'semua'",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *          in="query",
+     *          required=false
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="success",
@@ -346,6 +356,16 @@ class NewsController extends Controller
      * @OA\Get (
      *     path="/news/detail/{news_id}",
      *     tags={"News"},
+     *      @OA\Parameter(
+     *          parameter="news_id",
+     *          name="news_id",
+     *          description="ID Berita",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *          in="path",
+     *          required=true
+     *      ),
      *      @OA\Parameter(
      *          parameter="id_ukm",
      *          name="id_ukm",

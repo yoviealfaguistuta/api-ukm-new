@@ -12,6 +12,25 @@ use Illuminate\Support\Facades\Validator;
 
 class GalleryImageController extends Controller
 {
+    /**
+     * Daftar Galeri Foto
+     * @OA\Get (
+     *     path="/private/gallery-image",
+     *     tags={"Gallery Image"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="_id",
+     *                 type="boolean",
+     *                 example="true"
+     *             )
+     *         )
+     *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function list()
     {
         $data = GalleryImage::select(
@@ -27,12 +46,57 @@ class GalleryImageController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/gallery-image",
+     * summary="Membuat Galeri Foto",
+     * description="Membuat galeri foto",
+     * tags={"Gallery Image"},
+
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"foto","judul", "deskripsi"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="foto",
+    *                  type="file",
+    *                  description="Foto",
+    *               ),
+    *               @OA\Property(
+    *                  property="judul",
+    *                  type="string",
+    *                  description="Judul informasi galeri foto",
+    *               ),
+    *               @OA\Property(
+    *                  property="deskripsi",
+    *                  type="string",
+    *                  description="Deskripsi galeri foto",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'judul' => ['string'],
-            'deskripsi' => ['string'],
-            'foto' => ['mimes:jpg,png,jpeg'],
+            'judul' => ['string', 'required'],
+            'deskripsi' => ['string', 'required'],
+            'foto' => ['mimes:jpg,png,jpeg', 'required'],
         ]);
 
         if ($validator->fails()) {
@@ -59,11 +123,64 @@ class GalleryImageController extends Controller
         return response()->json(false, 500);
     }
 
+    /**
+     * @OA\Post(
+     * path="/private/gallery-image/{gallery_image_id}",
+     * summary="Perbarui Galeri Foto",
+     * description="Perbarui informasi galeri foto",
+     * tags={"Gallery Image"},
+     *     @OA\Parameter(
+     *         name="gallery_image_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *   @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               required={"foto","judul", "deskripsi"},
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="foto",
+    *                  type="file",
+    *                  description="Foto",
+    *               ),
+    *               @OA\Property(
+    *                  property="judul",
+    *                  type="string",
+    *                  description="Judul informasi galeri foto",
+    *               ),
+    *               @OA\Property(
+    *                  property="deskripsi",
+    *                  type="string",
+    *                  description="Deskripsi galeri foto",
+    *               ),
+    *           ),
+    *       )
+    *   ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function update(Request $request, $gallery_image_id)
     {
         $validator = Validator::make($request->all(), [
-            'judul' => ['string'],
-            'deskripsi' => ['string'],
+            'judul' => ['string', 'required'],
+            'deskripsi' => ['string', 'required'],
             'foto' => ['mimes:jpg,png,jpeg'],
         ]);
 
@@ -100,6 +217,35 @@ class GalleryImageController extends Controller
         return response()->json("Galeri foto tidak ditemukan", 500);
     }
 
+    /**
+     * @OA\Get(
+     * path="/private/gallery-image/{gallery_image_id}",
+     * summary="Detail Galeri Foto",
+     * description="Informasi lengkap data galeri foto",
+     * tags={"Gallery Image"},
+     *     @OA\Parameter(
+     *         name="gallery_image_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function detail($gallery_image_id)
     {
         if (!is_numeric($gallery_image_id)) {
@@ -119,6 +265,35 @@ class GalleryImageController extends Controller
         return response()->json("Galeri foto tidak ditemukan", 500);
     }
 
+    /**
+     * @OA\Delete(
+     * path="/private/gallery-image/{gallery_image_id}",
+     * summary="Menghapus Galeri Foto",
+     * description="Menghapus informasi galeri foto",
+     * tags={"Gallery Image"},
+     *     @OA\Parameter(
+     *         name="gallery_image_id",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *    ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="success",
+    *         @OA\JsonContent(
+    *             @OA\Property(
+    *                 property="_id",
+    *                 type="boolean",
+    *                 example="true"
+    *             )
+    *         )
+    *     ),
+    *     security={{ "apiAuth": {} }}
+    * )
+    */
     public function delete($gallery_image_id)
     {
         if (!is_numeric($gallery_image_id)) {

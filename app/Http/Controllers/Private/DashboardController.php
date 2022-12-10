@@ -15,6 +15,25 @@ use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
+    /**
+     * Dashboard
+     * @OA\Get (
+     *     path="/private/dashboard",
+     *     tags={"Dashboard"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="_id",
+     *                 type="boolean",
+     *                 example="true"
+     *             )
+     *         )
+     *     ),
+     *     security={{ "apiAuth": {} }}
+     * )
+     */
     public function dashboard()
     {
         $data['statistik']['agenda'] = Agenda::where('id_ukm', Auth::user()->id_ukm)->count();
