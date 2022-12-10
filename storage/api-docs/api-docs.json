@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000/api",
+            "url": "http://api-ukm.spaceart.tech/api",
             "description": "Production"
         }
     ],
@@ -2706,7 +2706,6 @@
                         "multipart/form-data": {
                             "schema": {
                                 "required": [
-                                    "foto_news",
                                     "id_news_kategori",
                                     "title",
                                     "intro",
@@ -2926,7 +2925,6 @@
                         "multipart/form-data": {
                             "schema": {
                                 "required": [
-                                    "foto_ukm",
                                     "nama",
                                     "singkatan_ukm",
                                     "tentang_kami",
@@ -2941,6 +2939,10 @@
                                 "properties": {
                                     "foto_ukm": {
                                         "description": "Logo UKM",
+                                        "type": "file"
+                                    },
+                                    "struktur_organisasi": {
+                                        "description": "Stuktur Organisasi UKM",
                                         "type": "file"
                                     },
                                     "nama": {
