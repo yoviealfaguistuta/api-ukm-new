@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://yoviealfaguistuta.site/api",
+            "url": "http://api-ukm.yoviealfaguistuta.site/api",
             "description": "Production"
         }
     ],
