@@ -9,7 +9,7 @@ use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\GalleryVideoController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\PendaftaranAnggotaController;
-
+// ss
 /*
 |--------------------------------------------------------------------------
 | API Routes
